@@ -1,5 +1,6 @@
 package io.pokemontcg
 
+
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
@@ -14,5 +15,7 @@ object Pokemon {
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build()
     }
+
+
 
 }
