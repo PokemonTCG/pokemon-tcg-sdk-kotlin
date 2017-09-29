@@ -4,14 +4,13 @@ package com.r0adkll.pokemon.tcg
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.CardView
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.ftinc.kit.adapter.BetterRecyclerAdapter
 import io.pokemontcg.Pokemon
 import io.pokemontcg.model.Card
@@ -30,8 +29,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         adapter = CardAdapter(layoutInflater)
-        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.layoutManager = GridLayoutManager(this, 1)
         recycler.adapter = adapter
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(recycler)
 
         Pokemon.card()
                 .observeAll()
@@ -68,9 +69,9 @@ class MainActivity : AppCompatActivity() {
 
 
         fun bind(card: Card) {
-
             Glide.with(itemView)
                     .load(card.imageUrlHiRes)
+                    .apply(RequestOptions.placeholderOf(R.drawable.pokemon_card_back))
                     .into(image)
 
         }

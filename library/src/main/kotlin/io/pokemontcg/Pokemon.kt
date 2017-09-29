@@ -43,6 +43,7 @@ object Pokemon {
     private val rxService: RxApiService by lazy {
         val retroFit = Retrofit.Builder()
                 .baseUrl(API_URL)
+                .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
@@ -124,12 +125,12 @@ object Pokemon {
 
         class Where(private val params: Map<String, String?>) {
 
-            fun all(): List<Card> = syncService.getCards(params).result()
-            fun observeAll(): Observable<List<Card>> = rxService.getCards(params)
+            fun all(): List<Card> = syncService.getCards(params).result().cards
+            fun observeAll(): Observable<List<Card>> = rxService.getCards(params).map { it.cards }
         }
 
-        fun all(): List<Card> = syncService.getCards().result()
-        fun observeAll(): Observable<List<Card>> = rxService.getCards()
+        fun all(): List<Card> = syncService.getCards().result().cards
+        fun observeAll(): Observable<List<Card>> = rxService.getCards().map { it.cards }
         fun find(id: String): Card = syncService.getCard(id).result()
         fun observeFind(id: String): Observable<Card> = rxService.getCard(id)
     }
@@ -156,12 +157,12 @@ object Pokemon {
 
         class Where(val params: Map<String, String?>) {
 
-            fun all(): List<CardSet> = syncService.getSets(params).result()
-            fun observeAll(): Observable<List<CardSet>> = rxService.getSets(params)
+            fun all(): List<CardSet> = syncService.getSets(params).result().sets
+            fun observeAll(): Observable<List<CardSet>> = rxService.getSets(params).map { it.sets }
         }
 
-        fun all(): List<CardSet> = syncService.getSets().result()
-        fun observeAll(): Observable<List<CardSet>> = rxService.getSets()
+        fun all(): List<CardSet> = syncService.getSets().result().sets
+        fun observeAll(): Observable<List<CardSet>> = rxService.getSets().map { it.sets }
         fun find(id: String): CardSet = syncService.getSet(id).result()
         fun observeFind(id: String): Observable<CardSet> = rxService.getSet(id)
     }
