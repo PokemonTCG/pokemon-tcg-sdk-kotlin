@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object Pokemon {
 
-    private const val API_URL = "https://api.pokemontcg.io/v1"
+    private const val API_URL = "https://api.pokemontcg.io/v1/"
 
 
     private val okHttpClient: OkHttpClient by lazy {
@@ -32,6 +32,7 @@ object Pokemon {
     private val syncService: SyncApiService by lazy {
         val retroFit = Retrofit.Builder()
                 .baseUrl(API_URL)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
