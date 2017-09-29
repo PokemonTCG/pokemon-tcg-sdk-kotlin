@@ -21,11 +21,13 @@ object Pokemon {
 
     private const val API_URL = "https://api.pokemontcg.io/v1"
 
+
     private val okHttpClient: OkHttpClient by lazy {
         OkHttpClient.Builder()
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build()
     }
+
 
     private val syncService: SyncApiService by lazy {
         val retroFit = Retrofit.Builder()

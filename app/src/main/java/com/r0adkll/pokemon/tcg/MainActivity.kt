@@ -1,41 +1,40 @@
 package com.r0adkll.pokemon.tcg
 
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import io.pokemontcg.Pokemon
-import io.pokemontcg.util.and
-import io.pokemontcg.util.gt
-import io.pokemontcg.util.or
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.View
+import com.bumptech.glide.Glide
+import com.ftinc.kit.adapter.BetterRecyclerAdapter
+import io.pokemontcg.model.Card
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        Pokemon.card()
-                .where(name = "Charizard" or "Blastoise" or "Venasaur",
-                        hp = 80.gt(),
-                        attackDamage = "x10",
-                        rarity = "Rare" and "Rare Holo" and "Common"
-                        )
-                .observeAll()
+        recycler.layoutManager = LinearLayoutManager(this)
 
-        Pokemon.card()
-                .where(page = 5, pageSize = 500)
-                .observeAll()
+    }
 
-        Pokemon.set()
-                .where(name = "Burning Shadows")
-                .all()
+    class CardAdapter(
+            context: Context
+    ) : BetterRecyclerAdapter<Card, > {
 
-        Pokemon.set()
-                .find("0")
+    }
 
-        Pokemon.type()
-                .all()
+    class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
+        fun bind(card: Card) {
+        }
     }
 }

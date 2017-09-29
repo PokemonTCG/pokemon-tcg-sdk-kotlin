@@ -43,5 +43,18 @@ dependencies {
     implementation "com.android.support:cardview-v7:$support_version"
     implementation "com.android.support:design:$support_version"
 
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    implementation ("com.52inc:52Kit-core:$ftkit_version") {
+        exclude group: 'io.reactivex'
+    }
+    implementation ("com.52inc:52Kit-kotlin:$ftkit_version") {
+        exclude group: 'io.reactivex'
+    }
+
     implementation project(':library')
 }
