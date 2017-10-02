@@ -1,14 +1,13 @@
-package io.pokemontcg.network
+package io.pokemontcg.internal.api
 
 
-import io.pokemontcg.model.*
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.QueryMap
 
 
-interface RxApiService {
+internal interface RxApiService {
 
     @GET("cards")
     fun getCards(): Observable<CardResponse>
@@ -19,19 +18,19 @@ interface RxApiService {
 
 
     @GET("cards/{id}")
-    fun getCard(@Path("id") id: String): Observable<Card>
+    fun getCard(@Path("id") id: String): Observable<CardModel>
 
 
     @GET("types")
-    fun getTypes(): Observable<Types>
+    fun getTypes(): Observable<TypeResponse>
 
 
     @GET("supertypes")
-    fun getSuperTypes(): Observable<SuperTypes>
+    fun getSuperTypes(): Observable<SuperTypeResponse>
 
 
     @GET("subtypes")
-    fun getSubTypes(): Observable<SubTypes>
+    fun getSubTypes(): Observable<SubTypeResponse>
 
 
     @GET("sets")
@@ -43,5 +42,5 @@ interface RxApiService {
 
 
     @GET("sets/{id}")
-    fun getSet(@Path("id") id: String): Observable<CardSet>
+    fun getSet(@Path("id") id: String): Observable<CardSetModel>
 }

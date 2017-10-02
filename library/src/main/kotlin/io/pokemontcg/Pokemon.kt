@@ -1,10 +1,14 @@
 package io.pokemontcg
 
 
-import io.pokemontcg.model.Card
-import io.pokemontcg.model.CardSet
-import io.pokemontcg.network.RxApiService
-import io.pokemontcg.network.SyncApiService
+import io.pokemontcg.internal.api.ModelMapper
+import io.pokemontcg.internal.api.RxApiService
+import io.pokemontcg.internal.api.SyncApiService
+import io.pokemontcg.model.*
+import io.pokemontcg.requests.CardQueryBuilder
+import io.pokemontcg.requests.CardSetQueryBuilder
+import io.pokemontcg.requests.QueryRequest
+import io.pokemontcg.requests.Request
 import io.pokemontcg.util.result
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
@@ -17,174 +21,208 @@ import retrofit2.converter.gson.GsonConverterFactory
 /**
  * Root API object for interfacing with the io.pokemontcg.com API
  */
-object Pokemon {
+class Pokemon {
 
-    private const val API_URL = "https://api.pokemontcg.io/v1/"
-
-
-    private val okHttpClient: OkHttpClient by lazy {
-        OkHttpClient.Builder()
-                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .build()
+    companion object {
+        const val DEFAULT_API_URL = "https://api.pokemontcg.io/v1/"
     }
 
 
-    private val syncService: SyncApiService by lazy {
+    private val okHttpClient: OkHttpClient
+    private val syncService: SyncApiService
+    private val rxService: RxApiService
+
+
+    constructor() : this(Config())
+    constructor(config: Config.() -> Config) : this(Config().config())
+    constructor(config: Config) {
+        okHttpClient = OkHttpClient.Builder()
+                .addInterceptor(HttpLoggingInterceptor().setLevel(config.logLevel))
+                .build()
+
         val retroFit = Retrofit.Builder()
-                .baseUrl(API_URL)
+                .baseUrl(config.apiUrl)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-        retroFit.create(SyncApiService::class.java)
-    }
-
-
-    private val rxService: RxApiService by lazy {
-        val retroFit = Retrofit.Builder()
-                .baseUrl(API_URL)
-                .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-        retroFit.create(RxApiService::class.java)
+        syncService = retroFit.create(SyncApiService::class.java)
+        rxService = retroFit.create(RxApiService::class.java)
     }
 
 
-    fun card(): CardBuilder = CardBuilder()
-    fun set(): SetBuilder = SetBuilder()
-    fun type(): TypeBuilder = TypeBuilder()
-    fun superType(): SuperTypesBuilder = SuperTypesBuilder()
-    fun subType(): SubTypesBuilder = SubTypesBuilder()
+    fun card(): QueryRequest<Card, CardQueryBuilder> = CardBuilder()
+    fun set(): QueryRequest<CardSet, CardSetQueryBuilder> = SetBuilder()
+    fun type(): Request<Type> = TypeBuilder()
+    fun superType(): Request<SuperType> = SuperTypesBuilder()
+    fun subType(): Request<SubType> = SubTypesBuilder()
 
 
     /**
      * Helper class to build a query
      */
-    class CardBuilder {
+    private inner class CardBuilder : QueryRequest<Card, CardQueryBuilder> {
 
-        fun where(name: String? = null,
-                  nationalPokedexNumber: Int? = null,
-                  types: String? = null,
-                  subtype: String? = null,
-                  supertype: String? = null,
-                  hp: String? = null,
-                  number: String? = null,
-                  artist: String? = null,
-                  rarity: String? = null,
-                  series: String? = null,
-                  set: String? = null,
-                  setCode: String? = null,
-                  retreatCost: String? = null,
-                  text: String? = null,
-                  attackDamage: String? = null,
-                  attackCost: String? = null,
-                  attackName: String? = null,
-                  attackText: String? = null,
-                  weaknesses: String? = null,
-                  resistances: String? = null,
-                  ancientTrait: String? = null,
-                  abilityName: String? = null,
-                  abilityText: String? = null,
-                  abilityType: String? = null,
-                  contains: String? = null,
-                  page: Int? = null,
-                  pageSize: Int? = null): Where {
-
-            return Where(mapOf(
-                    "name" to name,
-                    "nationalPokedexNumber" to nationalPokedexNumber?.toString(),
-                    "types" to types,
-                    "subtype" to subtype,
-                    "supertype" to supertype,
-                    "hp" to hp,
-                    "number" to number,
-                    "artist" to artist,
-                    "rarity" to rarity,
-                    "series" to series,
-                    "set" to set,
-                    "setCode" to setCode,
-                    "retreatCost" to retreatCost,
-                    "text" to text,
-                    "attackDamage" to attackDamage,
-                    "attackCost" to attackCost,
-                    "attackName" to attackName,
-                    "attackText" to attackText,
-                    "weaknesses" to weaknesses,
-                    "resistances" to resistances,
-                    "ancientTrait" to ancientTrait,
-                    "abilityName" to abilityName,
-                    "abilityText" to abilityText,
-                    "abilityType" to abilityType,
-                    "contains" to contains,
-                    "page" to page?.toString(),
-                    "pageSize" to pageSize?.toString()))
+        override fun where(query: CardQueryBuilder.() -> Unit): Request<Card> {
+            val queryBuilder = CardQueryBuilder()
+            queryBuilder.query()
+            return Where(queryBuilder.toParams())
         }
 
 
-        class Where(private val params: Map<String, String?>) {
+        inner class Where(private val params: Map<String, String?>) : Request<Card> {
 
-            fun all(): List<Card> = syncService.getCards(params).result().cards
-            fun observeAll(): Observable<List<Card>> = rxService.getCards(params).map { it.cards }
+            override fun all(): List<Card> {
+                return syncService.getCards(params)
+                        .result()
+                        .cards
+                        .map { ModelMapper.to(it) }
+            }
+
+
+            override fun observeAll(): Observable<List<Card>> {
+                return rxService.getCards(params)
+                        .map { it.cards }
+                        .map { it.map { ModelMapper.to(it) } }
+            }
         }
 
-        fun all(): List<Card> = syncService.getCards().result().cards
-        fun observeAll(): Observable<List<Card>> = rxService.getCards().map { it.cards }
-        fun find(id: String): Card = syncService.getCard(id).result()
-        fun observeFind(id: String): Observable<Card> = rxService.getCard(id)
+
+        override fun all(): List<Card> {
+            return syncService.getCards()
+                    .result()
+                    .cards
+                    .map { ModelMapper.to(it) }
+        }
+
+
+        override fun observeAll(): Observable<List<Card>> {
+            return rxService.getCards()
+                    .map { it.cards }
+                    .map { it.map { ModelMapper.to(it) } }
+        }
+
+
+        override fun find(id: String): Card {
+            return ModelMapper.to(syncService.getCard(id).result())
+        }
+
+
+        override fun observeFind(id: String): Observable<Card> {
+            return rxService.getCard(id)
+                    .map { ModelMapper.to(it) }
+        }
     }
 
 
     /**
      * Helper class to assemble Set queries
      */
-    class SetBuilder {
+    private inner class SetBuilder : QueryRequest<CardSet, CardSetQueryBuilder> {
 
-        fun where(name: String? = null,
-                  series: String? = null,
-                  totalCards: String? = null,
-                  standardLegal: Boolean? = null,
-                  expandedLegal: Boolean? = null): Where {
-            return Where(mapOf(
-                    "name" to name,
-                    "series" to series,
-                    "totalCards" to totalCards,
-                    "standardLegal" to standardLegal.toString(),
-                    "expandedLegal" to expandedLegal.toString()
-            ))
+        override fun where(query: CardSetQueryBuilder.() -> Unit): Request<CardSet> {
+            val queryBuilder = CardSetQueryBuilder()
+            queryBuilder.query()
+            return Where(queryBuilder.toParams())
         }
 
-        class Where(val params: Map<String, String?>) {
 
-            fun all(): List<CardSet> = syncService.getSets(params).result().sets
-            fun observeAll(): Observable<List<CardSet>> = rxService.getSets(params).map { it.sets }
+        inner class Where(val params: Map<String, String?>): Request<CardSet> {
+
+            override fun all(): List<CardSet> {
+                return syncService.getSets(params)
+                        .result()
+                        .sets
+                        .map { ModelMapper.to(it) }
+            }
+
+
+            override fun observeAll(): Observable<List<CardSet>> {
+                return rxService.getSets(params)
+                        .map { it.sets }
+                        .map { it.map { ModelMapper.to(it) } }
+            }
         }
 
-        fun all(): List<CardSet> = syncService.getSets().result().sets
-        fun observeAll(): Observable<List<CardSet>> = rxService.getSets().map { it.sets }
-        fun find(id: String): CardSet = syncService.getSet(id).result()
-        fun observeFind(id: String): Observable<CardSet> = rxService.getSet(id)
+
+        override fun all(): List<CardSet> {
+            return syncService.getSets()
+                    .result()
+                    .sets
+                    .map { ModelMapper.to(it) }
+        }
+
+
+        override fun observeAll(): Observable<List<CardSet>> {
+            return rxService.getSets()
+                    .map { it.sets }
+                    .map { it.map { ModelMapper.to(it) } }
+        }
+
+
+        override fun find(id: String): CardSet {
+            return ModelMapper.to(syncService.getSet(id).result())
+        }
+
+
+        override fun observeFind(id: String): Observable<CardSet> {
+            return rxService.getSet(id)
+                    .map { ModelMapper.to(it) }
+        }
     }
 
 
-    class TypeBuilder {
+    private inner class TypeBuilder : Request<Type> {
 
-        fun all(): List<String> = syncService.getTypes().result().types
-        fun observeAll(): Observable<List<String>> = rxService.getTypes().map { it.types }
+        override fun all(): List<Type> {
+            return syncService.getTypes()
+                    .result()
+                    .types
+                    .map { Type.find(it) }
+        }
+
+
+        override fun observeAll(): Observable<List<Type>> {
+            return rxService.getTypes()
+                    .map { it.types }
+                    .map { it.map { Type.find(it) } }
+        }
     }
 
 
-    class SuperTypesBuilder {
+    private inner class SuperTypesBuilder : Request<SuperType> {
 
-        fun all(): List<String> = syncService.getSuperTypes().result().supertypes
-        fun observeAll(): Observable<List<String>> = rxService.getSuperTypes().map { it.supertypes }
+        override fun all(): List<SuperType> {
+            return syncService.getSuperTypes()
+                    .result()
+                    .supertypes
+                    .map { SuperType.find(it) }
+        }
+
+
+        override fun observeAll(): Observable<List<SuperType>> {
+            return rxService.getSuperTypes()
+                    .map { it.supertypes }
+                    .map { it.map { SuperType.find(it) } }
+        }
     }
 
 
-    class SubTypesBuilder {
+    private inner class SubTypesBuilder : Request<SubType> {
 
-        fun all(): List<String> = syncService.getSubTypes().result().subtypes
-        fun observeAll(): Observable<List<String>> = rxService.getSubTypes().map { it.subtypes }
+        override fun all(): List<SubType> {
+            return syncService.getSubTypes()
+                    .result()
+                    .subtypes
+                    .map { SubType.find(it) }
+        }
+
+
+        override fun observeAll(): Observable<List<SubType>> {
+            return rxService.getSubTypes()
+                    .map { it.subtypes }
+                    .map { it.map { SubType.find(it) } }
+        }
     }
 }

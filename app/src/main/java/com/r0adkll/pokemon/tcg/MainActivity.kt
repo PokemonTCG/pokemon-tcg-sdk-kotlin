@@ -14,6 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.ftinc.kit.adapter.BetterRecyclerAdapter
 import io.pokemontcg.Pokemon
 import io.pokemontcg.model.Card
+import io.pokemontcg.util.gt
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,7 +35,8 @@ class MainActivity : AppCompatActivity() {
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recycler)
 
-        Pokemon.card()
+        val pokemon = Pokemon()
+        pokemon.card()
                 .observeAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -45,6 +47,21 @@ class MainActivity : AppCompatActivity() {
                 }, {
                     it.printStackTrace()
                 })
+
+        pokemon.card()
+                .where {
+                    nationalPokedexNumber = 150
+                    hp = 80.gt()
+                }
+                .observeAll()
+
+        pokemon.set()
+                .where {
+                    standardLegal = true
+                    expandedLegal = true
+                }
+                .observeAll()
+
     }
 
     class CardAdapter(

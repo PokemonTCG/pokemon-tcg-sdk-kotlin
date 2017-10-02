@@ -1,13 +1,13 @@
-package io.pokemontcg.network
+package io.pokemontcg.internal.api
 
-import io.pokemontcg.model.*
+
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.QueryMap
 
 
-interface SyncApiService {
+internal interface SyncApiService {
 
     @GET("cards")
     fun getCards(): Call<CardResponse>
@@ -18,19 +18,19 @@ interface SyncApiService {
 
 
     @GET("cards/{id}")
-    fun getCard(@Path("id") id: String): Call<Card>
+    fun getCard(@Path("id") id: String): Call<CardModel>
 
 
     @GET("types")
-    fun getTypes(): Call<Types>
+    fun getTypes(): Call<TypeResponse>
 
 
     @GET("supertypes")
-    fun getSuperTypes(): Call<SuperTypes>
+    fun getSuperTypes(): Call<SuperTypeResponse>
 
 
     @GET("subtypes")
-    fun getSubTypes(): Call<SubTypes>
+    fun getSubTypes(): Call<SubTypeResponse>
 
 
     @GET("sets")
@@ -42,5 +42,5 @@ interface SyncApiService {
 
 
     @GET("sets/{id}")
-    fun getSet(@Path("id") id: String): Call<CardSet>
+    fun getSet(@Path("id") id: String): Call<CardSetModel>
 }
