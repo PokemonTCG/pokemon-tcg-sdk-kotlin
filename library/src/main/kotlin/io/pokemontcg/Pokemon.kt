@@ -34,7 +34,6 @@ class Pokemon {
 
 
     constructor() : this(Config())
-    constructor(config: Config.() -> Config) : this(Config().config())
     constructor(config: Config) {
         okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(HttpLoggingInterceptor().setLevel(config.logLevel))
