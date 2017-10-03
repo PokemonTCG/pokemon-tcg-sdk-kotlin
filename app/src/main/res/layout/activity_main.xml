@@ -3,13 +3,76 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="4dp"
-        android:clipToPadding="false">
+    <TextView
+        android:id="@+id/action_pokemon_cards"
+        style="@style/Widget.Poke.Option"
+        android:text="@string/action_pokemon_cards"
+        android:drawableStart="@drawable/ic_pikachu"
+        />
 
-    </android.support.v7.widget.RecyclerView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black12"
+        />
+
+    <TextView
+        android:id="@+id/action_trainer_cards"
+        style="@style/Widget.Poke.Option"
+        android:text="@string/action_trainer_cards"
+        android:drawableStart="@drawable/ic_pokedex"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black12"
+        />
+
+    <TextView
+        android:id="@+id/action_energy_cards"
+        style="@style/Widget.Poke.Option"
+        android:text="@string/action_energy_cards"
+        android:drawableStart="@drawable/ic_energy"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black12"
+        />
+
+    <TextView
+        android:id="@+id/action_types"
+        style="@style/Widget.Poke.Option"
+        android:text="@string/action_types"
+        android:drawableStart="@drawable/ic_type"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black12"
+        />
+
+    <TextView
+        android:id="@+id/action_super_types"
+        style="@style/Widget.Poke.Option"
+        android:text="@string/action_supertypes"
+        android:drawableStart="@drawable/ic_type"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black12"
+        />
+
+    <TextView
+        android:id="@+id/action_sub_types"
+        style="@style/Widget.Poke.Option"
+        android:text="@string/action_subtypes"
+        android:drawableStart="@drawable/ic_type"
+        />
 
 </LinearLayout>

@@ -13,7 +13,7 @@ class CardSetQueryBuilder(
             "name" to name,
             "series" to series,
             "totalCards" to totalCards,
-            "standardLegal" to standardLegal.toString(),
-            "expandedLegal" to expandedLegal.toString()
+            "standardLegal" to standardLegal?.toString(),
+            "expandedLegal" to expandedLegal?.toString()
     )
 }

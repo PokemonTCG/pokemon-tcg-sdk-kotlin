@@ -13,7 +13,7 @@ data class Card(
         val evolvesFrom: String?,
         val hp: Int?,
         val retreatCost: List<Type>?,
-        val number: Int,
+        val number: String,
         val artist: String,
         val rarity: String,
         val series: String,

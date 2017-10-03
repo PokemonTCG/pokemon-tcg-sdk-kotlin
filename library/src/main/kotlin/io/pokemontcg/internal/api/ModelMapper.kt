@@ -17,7 +17,7 @@ internal object ModelMapper {
                 SuperType.find(model.supertype),
                 SubType.find(model.subtype),
                 model.evolvesFrom,
-                model.hp,
+                model.hp?.toIntOrNull(),
                 model.retreatCost?.map { Type.find(it) },
                 model.number,
                 model.artist,

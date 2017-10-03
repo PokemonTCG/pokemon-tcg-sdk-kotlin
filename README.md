@@ -43,6 +43,7 @@ val cards = pokemon.card()
         .all() // or .observeAll() for RxJava2
 	
 ```
+You can find all the applicable query fields in this file: [CardQueryBuilder.kt](https://github.com/r0adkll/pokemon-tcg-sdk-kotlin/blob/439253ca47ecee547def64e11bb6c760e77514db/library/src/main/kotlin/io/pokemontcg/requests/CardQueryBuilder.kt)
 
 Find a single card by id:
 
@@ -81,6 +82,7 @@ val sets = pokemon.set()
 	}
 	.all() // or .observeAll() for RxJava2
 ```
+You can find all the applicable query fields in this file: [CardSetQueryBuilder.kt](https://github.com/r0adkll/pokemon-tcg-sdk-kotlin/blob/master/library/src/main/kotlin/io/pokemontcg/requests/CardSetQueryBuilder.kt)
 
 Find a single set by code
 
@@ -100,7 +102,7 @@ val types = pokemon.type().all() // .observeAll() for RxJava2
 // Get a list of availble card super types i.e. Pokémon, Trainer, Energy
 val superTypes = pokemon.superType().all() // .observeAll()
 
-// Get a list of card subtypes i.e. 
+// Get a list of card subtypes i.e. Basic, Stage 1, Item, Supporter, etc...
 val subTypes = pokemon.subType().all() // .observeAll()
 ```
 
@@ -117,7 +119,7 @@ These functions allow you to compose and/or query options i.e.
 #### And
 
 ```kotlin
-"water, fire, electric"
+"water,fire,electric"
 ```
 
 #### Or

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Pokemon TCG</string>
+    <string name="action_pokemon_cards">Pokémon cards</string>
+    <string name="action_trainer_cards">Trainer cards</string>
+    <string name="action_energy_cards">Energy cards</string>
+    <string name="action_types">Types</string>
+    <string name="action_supertypes">Supertypes</string>
+    <string name="action_subtypes">Subtypes</string>
 </resources>

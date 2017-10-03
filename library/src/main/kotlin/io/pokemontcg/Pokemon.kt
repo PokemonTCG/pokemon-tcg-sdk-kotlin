@@ -5,10 +5,7 @@ import io.pokemontcg.internal.api.ModelMapper
 import io.pokemontcg.internal.api.RxApiService
 import io.pokemontcg.internal.api.SyncApiService
 import io.pokemontcg.model.*
-import io.pokemontcg.requests.CardQueryBuilder
-import io.pokemontcg.requests.CardSetQueryBuilder
-import io.pokemontcg.requests.QueryRequest
-import io.pokemontcg.requests.Request
+import io.pokemontcg.requests.*
 import io.pokemontcg.util.result
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
@@ -63,17 +60,17 @@ class Pokemon {
      */
     private inner class CardBuilder : QueryRequest<Card, CardQueryBuilder> {
 
-        override fun where(query: CardQueryBuilder.() -> Unit): Request<Card> {
+        override fun where(query: CardQueryBuilder.() -> Unit): WhereRequest<Card> {
             val queryBuilder = CardQueryBuilder()
             queryBuilder.query()
             return Where(queryBuilder.toParams())
         }
 
 
-        inner class Where(private val params: Map<String, String?>) : Request<Card> {
+        inner class Where(params: Map<String, String?>) : WhereRequest<Card>(params) {
 
             override fun all(): List<Card> {
-                return syncService.getCards(params)
+                return syncService.getCards(query)
                         .result()
                         .cards
                         .map { ModelMapper.to(it) }
@@ -81,7 +78,7 @@ class Pokemon {
 
 
             override fun observeAll(): Observable<List<Card>> {
-                return rxService.getCards(params)
+                return rxService.getCards(query)
                         .map { it.cards }
                         .map { it.map { ModelMapper.to(it) } }
             }
@@ -120,17 +117,17 @@ class Pokemon {
      */
     private inner class SetBuilder : QueryRequest<CardSet, CardSetQueryBuilder> {
 
-        override fun where(query: CardSetQueryBuilder.() -> Unit): Request<CardSet> {
+        override fun where(query: CardSetQueryBuilder.() -> Unit): WhereRequest<CardSet> {
             val queryBuilder = CardSetQueryBuilder()
             queryBuilder.query()
             return Where(queryBuilder.toParams())
         }
 
 
-        inner class Where(val params: Map<String, String?>): Request<CardSet> {
+        inner class Where(params: Map<String, String?>): WhereRequest<CardSet>(params) {
 
             override fun all(): List<CardSet> {
-                return syncService.getSets(params)
+                return syncService.getSets(query)
                         .result()
                         .sets
                         .map { ModelMapper.to(it) }
@@ -138,7 +135,7 @@ class Pokemon {
 
 
             override fun observeAll(): Observable<List<CardSet>> {
-                return rxService.getSets(params)
+                return rxService.getSets(query)
                         .map { it.sets }
                         .map { it.map { ModelMapper.to(it) } }
             }
