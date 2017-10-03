@@ -1,0 +1,93 @@
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
+
+bintray {
+    user = BINTRAY_USER
+    key = BINTRAY_API_KEY
+    configurations = ['archives']
+    publications = ['mavenJava']
+    pkg {
+        repo = 'pokemon-tcg-sdk-kotlin'
+        name = 'pokemon-tcg-sdk-kotlin'
+        userOrg = 'r0adkll'
+        licenses = ['Apache-2.0']
+        vcsUrl = POM_URL
+        publish = true
+        publicDownloadNumbers = true
+        version {
+            name = VERSION_NAME
+            desc = VERSION_DESC
+            released = new Date()
+            vcsTag = "v$VERSION_NAME"
+        }
+    }
+}
+
+
+def pomConfig = {
+    licenses {
+        license {
+            name POM_LICENCE_NAME
+            url POM_LICENCE_URL
+            distribution POM_LICENCE_DIST
+        }
+    }
+
+    developers {
+        developer {
+            id POM_DEVELOPER_ID
+            name POM_DEVELOPER_NAME
+            email POM_DEVELOPER_EMAIL
+        }
+    }
+
+    scm {
+        url POM_SCM_URL
+        connection POM_SCM_CONNECTION
+        developerConnection POM_SCM_DEV_CONNECTION
+    }
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            groupId GROUP
+            artifactId POM_ARTIFACT_ID
+            version VERSION_NAME
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', POM_DESCRIPTION)
+                root.appendNode('name', POM_NAME)
+                root.appendNode('url', POM_URL)
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+// custom tasks for creating source/javadoc jars
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+// add javadoc/source jar tasks as artifacts
+artifacts {
+    archives sourcesJar, javadocJar
+}
+
+
+task publishArchives {
+    dependsOn 'clean'
+    dependsOn 'bintrayUpload'
+    tasks.findByName('bintrayUpload').mustRunAfter 'clean'
+}

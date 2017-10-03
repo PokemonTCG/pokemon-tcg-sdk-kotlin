@@ -1,5 +1,8 @@
+apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
+group = GROUP
+version = VERSION_NAME
 
 dependencies {
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
@@ -14,3 +17,5 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 }
+
+apply from: '../tools/bintray-publish.gradle'
