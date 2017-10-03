@@ -48,7 +48,7 @@ Find a single card by id:
 
 ```kotlin
 val card = pokemon.card()
-		.find("xy7-54") // or .observeFind("xy7-54") for RxJava2
+	.find("xy7-54") // or .observeFind("xy7-54") for RxJava2
 ```
 
 ### Sets:
@@ -73,13 +73,13 @@ Query Support
 
 ```kotlin
 val sets = pokemon.set()
-		.where {
-			totalCards = 100.gt()
-	   		standardLegal = true
-        	expandedLegal = true
-        	...
-		}
-		.all() // or .observeAll() for RxJava2
+	.where {
+		totalCards = 100.gt()
+		standardLegal = true
+		expandedLegal = true
+		...
+	}
+	.all() // or .observeAll() for RxJava2
 ```
 
 Find a single set by code
