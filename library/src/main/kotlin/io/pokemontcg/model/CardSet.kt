@@ -3,7 +3,7 @@ package io.pokemontcg.model
 
 data class CardSet(
      val code: String,
-     val ptcgoCode: String,
+     val ptcgoCode: String?,
      val name: String,
      val series: String,
      val totalCards: Int,
