@@ -60,6 +60,11 @@ class Pokemon {
      */
     private inner class CardBuilder : QueryRequest<Card, CardQueryBuilder> {
 
+        override fun where(query: CardQueryBuilder): WhereRequest<Card> {
+            return Where(query.toParams())
+        }
+
+
         override fun where(query: CardQueryBuilder.() -> Unit): WhereRequest<Card> {
             val queryBuilder = CardQueryBuilder()
             queryBuilder.query()
@@ -116,6 +121,11 @@ class Pokemon {
      * Helper class to assemble Set queries
      */
     private inner class SetBuilder : QueryRequest<CardSet, CardSetQueryBuilder> {
+
+        override fun where(query: CardSetQueryBuilder): WhereRequest<CardSet> {
+            return Where(query.toParams())
+        }
+
 
         override fun where(query: CardSetQueryBuilder.() -> Unit): WhereRequest<CardSet> {
             val queryBuilder = CardSetQueryBuilder()

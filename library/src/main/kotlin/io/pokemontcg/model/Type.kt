@@ -3,7 +3,6 @@ package io.pokemontcg.model
 
 enum class Type(internal var text: String? = null) {
     COLORLESS,
-    DARK,
     DARKNESS,
     DRAGON,
     FAIRY,
