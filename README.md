@@ -6,7 +6,7 @@ This is the Pokémon TCG SDK Kotlin implementation. It is a wrapper around the P
 Add this line to your `dependencies {...}` block in your `build.gradle` file
 
 ```groovy
-compile 'io.pokemontcg:pokemon-tcg-sdk-kotlin:1.0.4'
+compile 'io.pokemontcg:pokemon-tcg-sdk-kotlin:1.0.5'
 ```
 
 ## Usage
