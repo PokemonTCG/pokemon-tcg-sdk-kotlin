@@ -2,6 +2,7 @@ package io.pokemontcg.requests
 
 
 class CardQueryBuilder(
+        var id: String? = null,
         var name: String? = null,
         var nationalPokedexNumber: Int? = null,
         var types: String? = null,
@@ -32,6 +33,7 @@ class CardQueryBuilder(
 ) : QueryBuilder {
 
     override fun toParams(): Map<String, String?> = mapOf(
+            "id" to id,
             "name" to name,
             "nationalPokedexNumber" to nationalPokedexNumber?.toString(),
             "types" to types,
