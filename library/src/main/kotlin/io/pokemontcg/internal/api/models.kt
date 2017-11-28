@@ -52,7 +52,7 @@ internal class CardSetModel(
 
 
 internal class AttackModel(
-        val cost: List<String>,
+        val cost: List<String>?,
         val name: String,
         val text: String,
         val damage: String,

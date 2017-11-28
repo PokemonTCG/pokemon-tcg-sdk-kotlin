@@ -35,7 +35,7 @@ internal object ModelMapper {
 
     fun to(model: AttackModel): Attack {
         return Attack(
-                model.cost.map { Type.find(it) },
+                model.cost?.map { Type.find(it) },
                 model.name,
                 model.text,
                 model.damage,
