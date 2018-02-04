@@ -71,6 +71,7 @@ class CardsActivity : BaseActivity() {
     private fun loadCards() {
         disposables += pokemon.card()
                 .where {
+                    name = "mew"
                     supertype = superType.displayName
                 }
                 .observeAll()
