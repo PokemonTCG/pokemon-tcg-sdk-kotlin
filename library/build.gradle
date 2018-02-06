@@ -12,10 +12,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
 
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    api "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    api "com.squareup.retrofit2:retrofit:$retrofit_version"
+    api "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    api "com.squareup.retrofit2:converter-gson:$retrofit_version"
 }
 
 apply from: '../tools/bintray-publish.gradle'

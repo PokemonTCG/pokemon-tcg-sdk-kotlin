@@ -32,9 +32,13 @@ class Pokemon {
 
     constructor() : this(Config())
     constructor(config: Config) {
-        okHttpClient = OkHttpClient.Builder()
-                .addInterceptor(HttpLoggingInterceptor().setLevel(config.logLevel))
-                .build()
+        if (config.client != null) {
+            okHttpClient = config.client
+        } else {
+            okHttpClient = OkHttpClient.Builder()
+                    .addInterceptor(HttpLoggingInterceptor().setLevel(config.logLevel))
+                    .build()
+        }
 
         val retroFit = Retrofit.Builder()
                 .baseUrl(config.apiUrl)
