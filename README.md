@@ -2,11 +2,12 @@
 
 This is the Pokémon TCG SDK Kotlin implementation. It is a wrapper around the Pokémon TCG API of [pokemontcg.io](http://pokemontcg.io)
 
-## Installation
+## Installation [![Download](https://api.bintray.com/packages/r0adkll/pokemon-tcg-sdk-kotlin/pokemon-tcg-sdk-kotlin/images/download.svg) ](https://bintray.com/r0adkll/pokemon-tcg-sdk-kotlin/pokemon-tcg-sdk-kotlin/_latestVersion)
+
 Add this line to your `dependencies {...}` block in your `build.gradle` file
 
 ```groovy
-compile 'io.pokemontcg:pokemon-tcg-sdk-kotlin:1.0.8'
+compile 'io.pokemontcg:pokemon-tcg-sdk-kotlin:{latest}'
 ```
 
 ## Usage

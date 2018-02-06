@@ -33,7 +33,8 @@ internal class CardModel(
         val text: List<String>?,
         val attacks: List<AttackModel>?,
         val weaknesses: List<EffectModel>?,
-        val resistances: List<EffectModel>?
+        val resistances: List<EffectModel>?,
+        val ability: AbilityModel?
 )
 
 
@@ -48,6 +49,13 @@ internal class CardSetModel(
         val releaseDate: String,
         val symbolUrl: String,
         val logoUrl: String
+)
+
+
+internal class AbilityModel(
+        val name: String,
+        val text: String,
+        val type: String
 )
 
 

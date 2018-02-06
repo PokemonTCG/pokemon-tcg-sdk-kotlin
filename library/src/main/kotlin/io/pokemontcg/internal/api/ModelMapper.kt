@@ -28,8 +28,14 @@ internal object ModelMapper {
                 model.text,
                 model.attacks?.map { to(it) },
                 model.weaknesses?.map { to(it) },
-                model.resistances?.map { to(it) }
+                model.resistances?.map { to(it) },
+                model.ability?.let { to(it) }
         )
+    }
+
+
+    fun to(model: AbilityModel): Ability {
+        return Ability(model.name, model.text, model.type)
     }
 
 
