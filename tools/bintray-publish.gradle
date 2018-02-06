@@ -88,6 +88,8 @@ artifacts {
 
 task publishArchives {
     dependsOn 'clean'
+    dependsOn 'assemble'
     dependsOn 'bintrayUpload'
-    tasks.findByName('bintrayUpload').mustRunAfter 'clean'
+    tasks.findByName('assemble').mustRunAfter('clean')
+    tasks.findByName('bintrayUpload').mustRunAfter 'assemble'
 }
