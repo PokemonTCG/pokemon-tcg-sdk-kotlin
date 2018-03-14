@@ -65,7 +65,8 @@ internal object ModelMapper {
                 model.standardLegal,
                 model.expandedLegal,
                 model.releaseDate,
-                model.symbolUrl
+                model.symbolUrl,
+                model.logoUrl
         )
     }
 }
