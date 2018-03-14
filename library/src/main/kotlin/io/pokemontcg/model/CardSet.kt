@@ -10,5 +10,6 @@ data class CardSet(
      val standardLegal: Boolean,
      val expandedLegal: Boolean,
      val releaseDate: String,
-     val symbolUrl: String
+     val symbolUrl: String,
+     val logoUrl: String
 )
