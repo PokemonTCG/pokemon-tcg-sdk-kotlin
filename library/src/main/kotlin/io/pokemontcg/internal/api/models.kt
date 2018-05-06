@@ -55,7 +55,7 @@ internal class CardSetModel(
 internal class AbilityModel(
         val name: String,
         val text: String,
-        val type: String
+        val type: String?
 )
 
 
