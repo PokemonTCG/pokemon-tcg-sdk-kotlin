@@ -93,7 +93,7 @@ class CardsActivity : BaseActivity() {
             val layoutInflater: LayoutInflater
     ) : BetterRecyclerAdapter<Card, CardViewHolder>() {
 
-        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CardViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
             val view = layoutInflater.inflate(R.layout.item_card, parent, false)
             return CardViewHolder(view)
         }

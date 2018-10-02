@@ -28,6 +28,7 @@ class CardQueryBuilder(
         var abilityText: String? = null,
         var abilityType: String? = null,
         var contains: String? = null,
+        var evolvesFrom: String? = null,
         var page: Int? = null,
         var pageSize: Int? = null
 ) : QueryBuilder {
@@ -59,6 +60,7 @@ class CardQueryBuilder(
             "abilityText" to abilityText,
             "abilityType" to abilityType,
             "contains" to contains,
+            "evolvesFrom" to evolvesFrom,
             "page" to page?.toString(),
             "pageSize" to pageSize?.toString()
     )
