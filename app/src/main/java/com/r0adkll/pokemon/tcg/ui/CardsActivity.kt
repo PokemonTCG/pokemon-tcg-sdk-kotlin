@@ -10,10 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.bumptech.glide.GenericTransitionOptions
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
 import com.ftinc.kit.adapter.BetterRecyclerAdapter
 import com.r0adkll.pokemon.tcg.GlideApp
 import com.r0adkll.pokemon.tcg.R
@@ -61,17 +58,22 @@ class CardsActivity : BaseActivity() {
         return when(item.itemId) {
             android.R.id.home -> {
                 finish()
-                return true
+                true
             }
-            else -> return super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
-
+    /**
+     * For Pokemon cards, we can load mew just for demonstration sake.
+     * For trainers and energy, we don't want to limit the search results so just avoid passing a name.
+     */
     private fun loadCards() {
+        val pokemonName = if (superType == SuperType.POKEMON) "mew" else ""
+
         disposables += pokemon.card()
                 .where {
-                    name = "mew"
+                    name = pokemonName
                     supertype = superType.displayName
                 }
                 .observeAll()
