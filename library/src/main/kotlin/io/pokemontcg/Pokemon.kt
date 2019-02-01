@@ -32,10 +32,10 @@ class Pokemon {
 
     constructor() : this(Config())
     constructor(config: Config) {
-        if (config.client != null) {
-            okHttpClient = config.client
+        okHttpClient = if (config.client != null) {
+            config.client
         } else {
-            okHttpClient = OkHttpClient.Builder()
+            OkHttpClient.Builder()
                     .addInterceptor(HttpLoggingInterceptor().setLevel(config.logLevel))
                     .build()
         }
