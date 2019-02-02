@@ -19,6 +19,7 @@ enum class SubType(internal var text: String? = null) {
     LEGEND("LEGEND"),
     BREAK("BREAK"),
     ROCKETS_SECRET_MACHINE("Rocket's Secret Machine"),
+    TAG_TEAM("TAG TEAM"),
     UNKNOWN;
 
     val displayName: String
