@@ -14,7 +14,7 @@ data class Card(
         val hp: Int?,
         val retreatCost: List<Type>?,
         val number: String,
-        val artist: String,
+        val artist: String?,
         val rarity: String?,
         val series: String,
         val set: String,

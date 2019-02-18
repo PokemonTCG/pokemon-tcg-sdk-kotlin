@@ -25,7 +25,7 @@ internal class CardModel(
         val hp: String?,
         val retreatCost: List<String>?,
         val number: String,
-        val artist: String,
+        val artist: String?,
         val rarity: String?,
         val series: String,
         val set: String,
