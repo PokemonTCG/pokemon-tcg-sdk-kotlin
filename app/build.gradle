@@ -50,15 +50,9 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
 
-    implementation ("com.52inc:52Kit-core:$ftkit_version") {
-        exclude group: 'io.reactivex'
-    }
-    implementation ("com.52inc:52Kit-kotlin:$ftkit_version") {
-        exclude group: 'io.reactivex'
-    }
-
-    implementation 'com.jakewharton.timber:timber:4.7.0'
-    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
+    implementation 'com.ftinc:kit:2.0.3'
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
     implementation project(':library')
 }

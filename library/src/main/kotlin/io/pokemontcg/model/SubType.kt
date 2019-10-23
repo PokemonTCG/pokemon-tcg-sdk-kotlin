@@ -27,9 +27,9 @@ enum class SubType(internal var text: String? = null) {
 
 
     companion object {
-        val VALUES by lazy { values() }
+        private val VALUES by lazy { values() }
 
-        fun find(text: String): SubType {
+        fun find(text: String?): SubType {
             val subtype = VALUES.find { it.text.equals(text, true) } ?: UNKNOWN
             if (subtype == UNKNOWN) {
                 subtype.text = text

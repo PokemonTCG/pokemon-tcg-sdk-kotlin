@@ -12,9 +12,9 @@ enum class SuperType(internal var text: String? = null) {
 
 
     companion object {
-        val VALUES by lazy { values() }
+        private val VALUES by lazy { values() }
 
-        fun find(text: String): SuperType {
+        fun find(text: String?): SuperType {
             val supertype = VALUES.find { it.text.equals(text, true) } ?: UNKNOWN
             if (supertype == UNKNOWN) {
                 supertype.text = text

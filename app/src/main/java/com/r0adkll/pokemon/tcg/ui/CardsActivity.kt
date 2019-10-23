@@ -3,6 +3,8 @@ package com.r0adkll.pokemon.tcg.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.recyclerview.extensions.ListAdapter
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -11,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.ftinc.kit.adapter.BetterRecyclerAdapter
 import com.r0adkll.pokemon.tcg.GlideApp
 import com.r0adkll.pokemon.tcg.R
 import com.r0adkll.pokemon.tcg.ui.component.BaseActivity
@@ -38,9 +39,8 @@ class CardsActivity : BaseActivity() {
         val ordinal = intent.getIntExtra(EXTRA_SUPERTYPE, SuperType.POKEMON.ordinal)
         superType = SuperType.values()[ordinal]
 
-        adapter = CardAdapter(layoutInflater)
-        adapter.setOnItemClickListener { _, item, _ ->
-            startActivity(CardViewActivity.createIntent(this, item.imageUrlHiRes))
+        adapter = CardAdapter(layoutInflater) {
+            startActivity(CardViewActivity.createIntent(this, it.imageUrlHiRes))
         }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -80,9 +80,7 @@ class CardsActivity : BaseActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    adapter.clear()
-                    adapter.addAll(it)
-                    adapter.notifyDataSetChanged()
+                    adapter.submitList(it)
                 }, {
                     Timber.e(it, "Error loading cards for $superType")
                     snackbar(it.localizedMessage)
@@ -92,19 +90,35 @@ class CardsActivity : BaseActivity() {
 
 
     class CardAdapter(
-            val layoutInflater: LayoutInflater
-    ) : BetterRecyclerAdapter<Card, CardViewHolder>() {
+            val layoutInflater: LayoutInflater,
+            private val itemClickListener: (Card) -> Unit
+    ) : ListAdapter<Card, CardViewHolder>(ITEM_CALLBACK) {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
             val view = layoutInflater.inflate(R.layout.item_card, parent, false)
             return CardViewHolder(view)
         }
 
-
         override fun onBindViewHolder(vh: CardViewHolder, i: Int) {
-            super.onBindViewHolder(vh, i)
-            val item = items[i]
+            val item = getItem(i)
             vh.bind(item)
+
+            vh.itemView.setOnClickListener {
+                itemClickListener(item)
+            }
+        }
+
+        companion object {
+            val ITEM_CALLBACK = object : DiffUtil.ItemCallback<Card>() {
+                override fun areItemsTheSame(p0: Card, p1: Card): Boolean {
+                    return p0.id == p1.id
+                }
+
+                override fun areContentsTheSame(p0: Card, p1: Card): Boolean {
+                    return p0 == p1
+                }
+
+            }
         }
     }
 
