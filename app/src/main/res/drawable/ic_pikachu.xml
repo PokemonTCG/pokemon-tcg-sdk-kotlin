@@ -1,37 +1,178 @@
-<vector android:height="24dp" android:viewportHeight="563"
-    android:viewportWidth="563" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="#ffd400" android:name="Compound Shape" android:pathData="m392.9 39.7h-108.3l-59.7 104.7h48.5l-63.6 129.3l167.2 -149.6h-54.3l70.2 -84.4z"/>
-    <path android:fillColor="#ffb000" android:name="Compound Shape" android:pathData="m263.9 76 -39 68.4h48.5l-63.6 129.3l126.6 -113.3h-42.2l30.2 -36.3h-1.8l40 -48.1h-98.8z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m317.8 120.1c-1.5 1.9 -1.9 4.5 -0.9 6.7c1 2.2 3.2 3.6 5.7 3.6h38l-131 117.2l49.4 -100.4c1 -1.9 0.8 -4.2 -0.3 -6.1c-1.1 -1.8 -3.1 -2.9 -5.3 -2.9h-37.7l52.6 -92.2h91.3l-61.7 74.1zm80.7 -83.1c-1 -2.2 -3.2 -3.6 -5.7 -3.6h-108.3c-2.2 0 -4.3 1.2 -5.4 3.2l-59.7 104.7c-1.1 1.9 -1.1 4.3 0 6.2c1.1 1.9 3.2 3.1 5.4 3.1h38.5l-59.2 120.3c-1.3 2.7 -0.6 5.9 1.8 7.7c1.1 0.9 2.4 1.3 3.8 1.3c1.5 0 3 -0.5 4.2 -1.6l167.2 -149.6c1.9 -1.7 2.6 -4.5 1.7 -6.9c-0.9 -2.4 -3.2 -4 -5.8 -4h-41l61.7 -74.1c1.6 -1.9 1.9 -4.5 0.9 -6.7z"/>
-    <path android:fillColor="#fff800" android:name="Compound Shape" android:pathData="m486.3 366.8c0 86.1 -91.8 156 -205 156c-113.2 0 -205 -69.9 -205 -156c0 -86.2 91.8 -189.4 205 -189.4c113.2 0 205 103.2 205 189.4z"/>
-    <path android:fillColor="#ffd400" android:name="Compound Shape" android:pathData="m486.3 366.8c0 86.1 -91.8 156 -205 156c-113.2 0 -205 -69.9 -205 -156c0 -86.2 91.8 -145.5 205 -145.5c113.2 0 205 59.4 205 145.5z"/>
-    <path android:fillColor="#fff800" android:name="Compound Shape" android:pathData="m324.9 325.9c0 5.8 -19.5 6.8 -43.7 6.8c-24.1 0 -43.7 -1 -43.7 -6.8c0 -5.8 19.5 -21 43.7 -21c24.1 0 43.7 15.2 43.7 21z"/>
-    <path android:fillColor="#ffb000" android:name="Compound Shape" android:pathData="m486.3 366.8c0 86.1 -91.8 156 -205 156c-113.2 0 -205 -69.9 -205 -156c0 -86.2 26.1 76.4 205 76.4c179 0 205 -162.6 205 -76.4z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m281.3 183.6c-110.1 0 -198.8 100.2 -198.8 183.2c0 82.6 89.2 149.8 198.8 149.8c109.6 0 198.8 -67.2 198.8 -149.8c0 -83 -88.7 -183.2 -198.8 -183.2zm0 345.4c-116.5 0 -211.3 -72.8 -211.3 -162.3c0 -88.6 94.2 -195.7 211.3 -195.7c54.3 0 107.4 22.8 149.4 64.2c38.8 38.2 61.9 87.4 61.9 131.5c0 89.5 -94.8 162.3 -211.3 162.3z"/>
-    <path android:fillColor="#ffd400" android:name="Compound Shape" android:pathData="m53.4 212c26.6 43.9 63.9 69.7 99.9 74.2c6.2 -44.8 -3.6 -96.8 -30.2 -140.7c-26.6 -43.9 -63.9 -69.8 -99.9 -74.2c-6.2 44.8 3.6 96.8 30.2 140.7z"/>
-    <path android:fillColor="#ffb000" android:name="Compound Shape" android:pathData="m23.1 71.3c-6.2 44.8 3.6 96.8 30.2 140.7c26.6 43.9 63.9 69.7 99.9 74.2l-130.2 -214.9z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m118.6 281.7c-0.9 0 -1.9 -0.2 -2.8 -0.7c-26.2 -13.2 -49.7 -35.9 -67.7 -65.7c-26.5 -43.7 -37.8 -96.5 -31.1 -144.8c0.5 -3.4 3.6 -5.8 7 -5.3c39.7 4.9 77.8 33 104.5 77.2c15.8 26 26.4 56 30.7 86.5c0.5 3.4 -1.9 6.6 -5.3 7.1c-3.4 0.5 -6.6 -1.9 -7.1 -5.3c-4.1 -28.9 -14.1 -57.2 -29.1 -81.8c-23.3 -38.5 -55.5 -63.8 -89.2 -70.3c-4.5 43.8 6.3 90.9 30.2 130.3c16.9 27.8 38.5 49 62.7 61c3.1 1.5 4.3 5.3 2.8 8.4c-1.1 2.2 -3.3 3.5 -5.6 3.5z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m90.3 104.9c-20.8 -19.2 -44.3 -30.7 -67.2 -33.6c-4.3 31 -0.9 65.5 10.5 98.4c27.7 -8.6 64.3 14.5 56.7 -64.8z"/>
-    <path android:fillColor="#ffd400" android:name="Compound Shape" android:pathData="m509.1 212c-26.6 43.9 -63.9 69.7 -99.9 74.2c-6.2 -44.8 3.6 -96.8 30.2 -140.7c26.6 -43.9 63.9 -69.8 99.9 -74.2c6.2 44.8 -3.6 96.8 -30.2 140.7z"/>
-    <path android:fillColor="#ffb000" android:name="Compound Shape" android:pathData="m539.4 71.3c6.2 44.8 -3.6 96.8 -30.2 140.7c-26.6 43.9 -63.9 69.7 -99.9 74.2l130.2 -214.9z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m443.9 281.7c-2.3 0 -4.5 -1.3 -5.6 -3.5c-1.5 -3.1 -0.3 -6.8 2.8 -8.4c24.1 -12.1 45.8 -33.2 62.7 -61c23.9 -39.4 34.7 -86.5 30.2 -130.3c-33.7 6.5 -65.9 31.8 -89.2 70.3c-14.9 24.6 -25 52.9 -29.1 81.8c-0.5 3.4 -3.6 5.8 -7.1 5.3c-3.4 -0.5 -5.8 -3.7 -5.3 -7.1c4.3 -30.5 15 -60.5 30.7 -86.5c26.7 -44.1 64.8 -72.3 104.5 -77.2c3.4 -0.4 6.5 2 7 5.3c6.7 48.3 -4.6 101.1 -31.1 144.8c-18.1 29.9 -41.5 52.6 -67.7 65.7c-0.9 0.5 -1.9 0.7 -2.8 0.7z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m472.2 104.9c20.9 -19.2 44.3 -30.7 67.2 -33.6c4.3 31 0.9 65.5 -10.5 98.4c-27.7 -8.6 -64.3 14.5 -56.7 -64.8z"/>
-    <path android:fillColor="#ff1a1a" android:name="Compound Shape" android:pathData="m181.3 380.8c0 16.1 -13.1 29.2 -29.2 29.2c-16.1 0 -29.2 -13.1 -29.2 -29.2c0 -16.1 13.1 -29.2 29.2 -29.2c16.1 0 29.2 13.1 29.2 29.2z"/>
-    <path android:fillColor="#d61d1d" android:name="Compound Shape" android:pathData="m181.3 380.8c0 16.1 -13.1 29.2 -29.2 29.2c-16.1 0 -29.2 -13.1 -29.2 -29.2"/>
-    <path android:fillColor="#ff1a1a" android:name="Compound Shape" android:pathData="m439.6 380.8c0 16.1 -13.1 29.2 -29.2 29.2c-16.1 0 -29.2 -13.1 -29.2 -29.2c0 -16.1 13.1 -29.2 29.2 -29.2c16.1 0 29.2 13.1 29.2 29.2z"/>
-    <path android:fillColor="#d61d1d" android:name="Compound Shape" android:pathData="m439.6 380.8c0 16.1 -13.1 29.2 -29.2 29.2c-16.1 0 -29.2 -13.1 -29.2 -29.2"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m264.9 336.8 16.3 8.2 16.3 -8.2h-32.7z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m281.3 351.2c-1 0 -1.9 -0.2 -2.8 -0.7l-16.3 -8.2c-2.6 -1.3 -4 -4.2 -3.3 -7c0.7 -2.8 3.2 -4.8 6.1 -4.8h32.7c2.9 0 5.4 2 6.1 4.8c0.7 2.8 -0.7 5.7 -3.3 7l-16.3 8.2c-0.9 0.4 -1.8 0.7 -2.8 0.7z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m264.2 379.1h-6.1c-12.8 0 -23.3 -10.4 -23.3 -23.3c0 -3.5 2.8 -6.3 6.3 -6.3c3.5 0 6.3 2.8 6.3 6.3c0 5.9 4.8 10.8 10.8 10.8h6.1c5.9 0 10.8 -4.8 10.8 -10.8v-6.1c0 -3.5 2.8 -6.3 6.3 -6.3c3.5 0 6.3 2.8 6.3 6.3v6.1c0 12.8 -10.4 23.3 -23.3 23.3z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m304.4 379.1h-6.1c-12.8 0 -23.3 -10.4 -23.3 -23.3v-6.1c0 -3.5 2.8 -6.3 6.3 -6.3c3.5 0 6.3 2.8 6.3 6.3v6.1c0 5.9 4.8 10.8 10.8 10.8h6.1c6 0 10.8 -4.8 10.8 -10.8c0 -3.5 2.8 -6.3 6.3 -6.3c3.5 0 6.3 2.8 6.3 6.3c0 12.8 -10.5 23.3 -23.3 23.3z"/>
-    <path android:fillColor="#6d5c4d" android:name="Compound Shape" android:pathData="m213.9 307.3c0 18.5 -15 33.5 -33.6 33.5c-18.5 0 -33.5 -15 -33.5 -33.5c0 -18.5 15 -33.6 33.5 -33.6c18.5 0 33.6 15 33.6 33.6z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m213.9 307.3c0 18.5 -15 6.9 -33.6 6.9c-18.5 0 -33.5 11.6 -33.5 -6.9c0 -18.5 15 -33.6 33.5 -33.6c18.5 0 33.6 15 33.6 33.6z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m180.4 280c-15.1 0 -27.3 12.2 -27.3 27.3c0 15.1 12.2 27.3 27.3 27.3c15.1 0 27.3 -12.2 27.3 -27.3c0 -15.1 -12.2 -27.3 -27.3 -27.3zm0 67.1c-21.9 0 -39.8 -17.9 -39.8 -39.8c0 -21.9 17.9 -39.8 39.8 -39.8c21.9 0 39.8 17.9 39.8 39.8c0 21.9 -17.9 39.8 -39.8 39.8z"/>
-    <path android:fillColor="#fff" android:name="Compound Shape" android:pathData="m177.3 296.4c0 7.5 -6.1 13.7 -13.7 13.7c-7.6 0 -13.7 -6.1 -13.7 -13.7c0 -7.6 6.1 -13.7 13.7 -13.7c7.5 0 13.7 6.1 13.7 13.7z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m163.7 289c-4.1 0 -7.4 3.3 -7.4 7.4c0 4.1 3.3 7.4 7.4 7.4c4.1 0 7.4 -3.3 7.4 -7.4c0 -4.1 -3.3 -7.4 -7.4 -7.4zm0 27.3c-11 0 -19.9 -8.9 -19.9 -19.9c0 -11 8.9 -19.9 19.9 -19.9c11 0 19.9 8.9 19.9 19.9c0 11 -8.9 19.9 -19.9 19.9z"/>
-    <path android:fillColor="#6d5c4d" android:name="Compound Shape" android:pathData="m415.7 307.3c0 18.5 -15 33.5 -33.5 33.5c-18.5 0 -33.5 -15 -33.5 -33.5c0 -18.5 15 -33.6 33.5 -33.6c18.5 0 33.5 15 33.5 33.6z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m415.7 307.3c0 18.5 -15 6.9 -33.5 6.9c-18.5 0 -33.5 11.6 -33.5 -6.9c0 -18.5 15 -33.6 33.5 -33.6c18.5 0 33.5 15 33.5 33.6z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m382.1 280c-15.1 0 -27.3 12.2 -27.3 27.3c0 15.1 12.2 27.3 27.3 27.3c15.1 0 27.3 -12.2 27.3 -27.3c0 -15.1 -12.2 -27.3 -27.3 -27.3zm0 67.1c-21.9 0 -39.8 -17.9 -39.8 -39.8c0 -21.9 17.9 -39.8 39.8 -39.8c21.9 0 39.8 17.9 39.8 39.8c0 21.9 -17.9 39.8 -39.8 39.8z"/>
-    <path android:fillColor="#fff" android:name="Compound Shape" android:pathData="m379.1 296.4c0 7.5 -6.1 13.7 -13.7 13.7c-7.6 0 -13.7 -6.1 -13.7 -13.7c0 -7.6 6.1 -13.7 13.7 -13.7c7.5 0 13.7 6.1 13.7 13.7z"/>
-    <path android:fillColor="#33363a" android:name="Compound Shape" android:pathData="m365.5 289c-4.1 0 -7.4 3.3 -7.4 7.4c0 4.1 3.3 7.4 7.4 7.4c4.1 0 7.4 -3.3 7.4 -7.4c0 -4.1 -3.3 -7.4 -7.4 -7.4zm0 27.3c-11 0 -19.9 -8.9 -19.9 -19.9c0 -11 8.9 -19.9 19.9 -19.9c11 0 19.9 8.9 19.9 19.9c0 11 -8.9 19.9 -19.9 19.9z"/>
+<vector
+    android:height="24dp"
+    android:viewportHeight="563"
+    android:viewportWidth="563"
+    android:width="24dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <path
+        android:fillColor="#ffd400"
+        android:name="Compound Shape"
+        android:pathData="m392.9 39.7h-108.3l-59.7 104.7h48.5l-63.6 129.3l167.2 -149.6h-54.3l70.2 -84.4z"
+        />
+    <path
+        android:fillColor="#ffb000"
+        android:name="Compound Shape"
+        android:pathData="m263.9 76 -39 68.4h48.5l-63.6 129.3l126.6 -113.3h-42.2l30.2 -36.3h-1.8l40 -48.1h-98.8z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m317.8 120.1c-1.5 1.9 -1.9 4.5 -0.9 6.7c1 2.2 3.2 3.6 5.7 3.6h38l-131 117.2l49.4 -100.4c1 -1.9 0.8 -4.2 -0.3 -6.1c-1.1 -1.8 -3.1 -2.9 -5.3 -2.9h-37.7l52.6 -92.2h91.3l-61.7 74.1zm80.7 -83.1c-1 -2.2 -3.2 -3.6 -5.7 -3.6h-108.3c-2.2 0 -4.3 1.2 -5.4 3.2l-59.7 104.7c-1.1 1.9 -1.1 4.3 0 6.2c1.1 1.9 3.2 3.1 5.4 3.1h38.5l-59.2 120.3c-1.3 2.7 -0.6 5.9 1.8 7.7c1.1 0.9 2.4 1.3 3.8 1.3c1.5 0 3 -0.5 4.2 -1.6l167.2 -149.6c1.9 -1.7 2.6 -4.5 1.7 -6.9c-0.9 -2.4 -3.2 -4 -5.8 -4h-41l61.7 -74.1c1.6 -1.9 1.9 -4.5 0.9 -6.7z"
+        />
+    <path
+        android:fillColor="#fff800"
+        android:name="Compound Shape"
+        android:pathData="m486.3 366.8c0 86.1 -91.8 156 -205 156c-113.2 0 -205 -69.9 -205 -156c0 -86.2 91.8 -189.4 205 -189.4c113.2 0 205 103.2 205 189.4z"
+        />
+    <path
+        android:fillColor="#ffd400"
+        android:name="Compound Shape"
+        android:pathData="m486.3 366.8c0 86.1 -91.8 156 -205 156c-113.2 0 -205 -69.9 -205 -156c0 -86.2 91.8 -145.5 205 -145.5c113.2 0 205 59.4 205 145.5z"
+        />
+    <path
+        android:fillColor="#fff800"
+        android:name="Compound Shape"
+        android:pathData="m324.9 325.9c0 5.8 -19.5 6.8 -43.7 6.8c-24.1 0 -43.7 -1 -43.7 -6.8c0 -5.8 19.5 -21 43.7 -21c24.1 0 43.7 15.2 43.7 21z"
+        />
+    <path
+        android:fillColor="#ffb000"
+        android:name="Compound Shape"
+        android:pathData="m486.3 366.8c0 86.1 -91.8 156 -205 156c-113.2 0 -205 -69.9 -205 -156c0 -86.2 26.1 76.4 205 76.4c179 0 205 -162.6 205 -76.4z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m281.3 183.6c-110.1 0 -198.8 100.2 -198.8 183.2c0 82.6 89.2 149.8 198.8 149.8c109.6 0 198.8 -67.2 198.8 -149.8c0 -83 -88.7 -183.2 -198.8 -183.2zm0 345.4c-116.5 0 -211.3 -72.8 -211.3 -162.3c0 -88.6 94.2 -195.7 211.3 -195.7c54.3 0 107.4 22.8 149.4 64.2c38.8 38.2 61.9 87.4 61.9 131.5c0 89.5 -94.8 162.3 -211.3 162.3z"
+        />
+    <path
+        android:fillColor="#ffd400"
+        android:name="Compound Shape"
+        android:pathData="m53.4 212c26.6 43.9 63.9 69.7 99.9 74.2c6.2 -44.8 -3.6 -96.8 -30.2 -140.7c-26.6 -43.9 -63.9 -69.8 -99.9 -74.2c-6.2 44.8 3.6 96.8 30.2 140.7z"
+        />
+    <path
+        android:fillColor="#ffb000"
+        android:name="Compound Shape"
+        android:pathData="m23.1 71.3c-6.2 44.8 3.6 96.8 30.2 140.7c26.6 43.9 63.9 69.7 99.9 74.2l-130.2 -214.9z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m118.6 281.7c-0.9 0 -1.9 -0.2 -2.8 -0.7c-26.2 -13.2 -49.7 -35.9 -67.7 -65.7c-26.5 -43.7 -37.8 -96.5 -31.1 -144.8c0.5 -3.4 3.6 -5.8 7 -5.3c39.7 4.9 77.8 33 104.5 77.2c15.8 26 26.4 56 30.7 86.5c0.5 3.4 -1.9 6.6 -5.3 7.1c-3.4 0.5 -6.6 -1.9 -7.1 -5.3c-4.1 -28.9 -14.1 -57.2 -29.1 -81.8c-23.3 -38.5 -55.5 -63.8 -89.2 -70.3c-4.5 43.8 6.3 90.9 30.2 130.3c16.9 27.8 38.5 49 62.7 61c3.1 1.5 4.3 5.3 2.8 8.4c-1.1 2.2 -3.3 3.5 -5.6 3.5z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m90.3 104.9c-20.8 -19.2 -44.3 -30.7 -67.2 -33.6c-4.3 31 -0.9 65.5 10.5 98.4c27.7 -8.6 64.3 14.5 56.7 -64.8z"
+        />
+    <path
+        android:fillColor="#ffd400"
+        android:name="Compound Shape"
+        android:pathData="m509.1 212c-26.6 43.9 -63.9 69.7 -99.9 74.2c-6.2 -44.8 3.6 -96.8 30.2 -140.7c26.6 -43.9 63.9 -69.8 99.9 -74.2c6.2 44.8 -3.6 96.8 -30.2 140.7z"
+        />
+    <path
+        android:fillColor="#ffb000"
+        android:name="Compound Shape"
+        android:pathData="m539.4 71.3c6.2 44.8 -3.6 96.8 -30.2 140.7c-26.6 43.9 -63.9 69.7 -99.9 74.2l130.2 -214.9z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m443.9 281.7c-2.3 0 -4.5 -1.3 -5.6 -3.5c-1.5 -3.1 -0.3 -6.8 2.8 -8.4c24.1 -12.1 45.8 -33.2 62.7 -61c23.9 -39.4 34.7 -86.5 30.2 -130.3c-33.7 6.5 -65.9 31.8 -89.2 70.3c-14.9 24.6 -25 52.9 -29.1 81.8c-0.5 3.4 -3.6 5.8 -7.1 5.3c-3.4 -0.5 -5.8 -3.7 -5.3 -7.1c4.3 -30.5 15 -60.5 30.7 -86.5c26.7 -44.1 64.8 -72.3 104.5 -77.2c3.4 -0.4 6.5 2 7 5.3c6.7 48.3 -4.6 101.1 -31.1 144.8c-18.1 29.9 -41.5 52.6 -67.7 65.7c-0.9 0.5 -1.9 0.7 -2.8 0.7z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m472.2 104.9c20.9 -19.2 44.3 -30.7 67.2 -33.6c4.3 31 0.9 65.5 -10.5 98.4c-27.7 -8.6 -64.3 14.5 -56.7 -64.8z"
+        />
+    <path
+        android:fillColor="#ff1a1a"
+        android:name="Compound Shape"
+        android:pathData="m181.3 380.8c0 16.1 -13.1 29.2 -29.2 29.2c-16.1 0 -29.2 -13.1 -29.2 -29.2c0 -16.1 13.1 -29.2 29.2 -29.2c16.1 0 29.2 13.1 29.2 29.2z"
+        />
+    <path
+        android:fillColor="#d61d1d"
+        android:name="Compound Shape"
+        android:pathData="m181.3 380.8c0 16.1 -13.1 29.2 -29.2 29.2c-16.1 0 -29.2 -13.1 -29.2 -29.2"
+        />
+    <path
+        android:fillColor="#ff1a1a"
+        android:name="Compound Shape"
+        android:pathData="m439.6 380.8c0 16.1 -13.1 29.2 -29.2 29.2c-16.1 0 -29.2 -13.1 -29.2 -29.2c0 -16.1 13.1 -29.2 29.2 -29.2c16.1 0 29.2 13.1 29.2 29.2z"
+        />
+    <path
+        android:fillColor="#d61d1d"
+        android:name="Compound Shape"
+        android:pathData="m439.6 380.8c0 16.1 -13.1 29.2 -29.2 29.2c-16.1 0 -29.2 -13.1 -29.2 -29.2"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m264.9 336.8 16.3 8.2 16.3 -8.2h-32.7z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m281.3 351.2c-1 0 -1.9 -0.2 -2.8 -0.7l-16.3 -8.2c-2.6 -1.3 -4 -4.2 -3.3 -7c0.7 -2.8 3.2 -4.8 6.1 -4.8h32.7c2.9 0 5.4 2 6.1 4.8c0.7 2.8 -0.7 5.7 -3.3 7l-16.3 8.2c-0.9 0.4 -1.8 0.7 -2.8 0.7z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m264.2 379.1h-6.1c-12.8 0 -23.3 -10.4 -23.3 -23.3c0 -3.5 2.8 -6.3 6.3 -6.3c3.5 0 6.3 2.8 6.3 6.3c0 5.9 4.8 10.8 10.8 10.8h6.1c5.9 0 10.8 -4.8 10.8 -10.8v-6.1c0 -3.5 2.8 -6.3 6.3 -6.3c3.5 0 6.3 2.8 6.3 6.3v6.1c0 12.8 -10.4 23.3 -23.3 23.3z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m304.4 379.1h-6.1c-12.8 0 -23.3 -10.4 -23.3 -23.3v-6.1c0 -3.5 2.8 -6.3 6.3 -6.3c3.5 0 6.3 2.8 6.3 6.3v6.1c0 5.9 4.8 10.8 10.8 10.8h6.1c6 0 10.8 -4.8 10.8 -10.8c0 -3.5 2.8 -6.3 6.3 -6.3c3.5 0 6.3 2.8 6.3 6.3c0 12.8 -10.5 23.3 -23.3 23.3z"
+        />
+    <path
+        android:fillColor="#6d5c4d"
+        android:name="Compound Shape"
+        android:pathData="m213.9 307.3c0 18.5 -15 33.5 -33.6 33.5c-18.5 0 -33.5 -15 -33.5 -33.5c0 -18.5 15 -33.6 33.5 -33.6c18.5 0 33.6 15 33.6 33.6z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m213.9 307.3c0 18.5 -15 6.9 -33.6 6.9c-18.5 0 -33.5 11.6 -33.5 -6.9c0 -18.5 15 -33.6 33.5 -33.6c18.5 0 33.6 15 33.6 33.6z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m180.4 280c-15.1 0 -27.3 12.2 -27.3 27.3c0 15.1 12.2 27.3 27.3 27.3c15.1 0 27.3 -12.2 27.3 -27.3c0 -15.1 -12.2 -27.3 -27.3 -27.3zm0 67.1c-21.9 0 -39.8 -17.9 -39.8 -39.8c0 -21.9 17.9 -39.8 39.8 -39.8c21.9 0 39.8 17.9 39.8 39.8c0 21.9 -17.9 39.8 -39.8 39.8z"
+        />
+    <path
+        android:fillColor="#fff"
+        android:name="Compound Shape"
+        android:pathData="m177.3 296.4c0 7.5 -6.1 13.7 -13.7 13.7c-7.6 0 -13.7 -6.1 -13.7 -13.7c0 -7.6 6.1 -13.7 13.7 -13.7c7.5 0 13.7 6.1 13.7 13.7z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m163.7 289c-4.1 0 -7.4 3.3 -7.4 7.4c0 4.1 3.3 7.4 7.4 7.4c4.1 0 7.4 -3.3 7.4 -7.4c0 -4.1 -3.3 -7.4 -7.4 -7.4zm0 27.3c-11 0 -19.9 -8.9 -19.9 -19.9c0 -11 8.9 -19.9 19.9 -19.9c11 0 19.9 8.9 19.9 19.9c0 11 -8.9 19.9 -19.9 19.9z"
+        />
+    <path
+        android:fillColor="#6d5c4d"
+        android:name="Compound Shape"
+        android:pathData="m415.7 307.3c0 18.5 -15 33.5 -33.5 33.5c-18.5 0 -33.5 -15 -33.5 -33.5c0 -18.5 15 -33.6 33.5 -33.6c18.5 0 33.5 15 33.5 33.6z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m415.7 307.3c0 18.5 -15 6.9 -33.5 6.9c-18.5 0 -33.5 11.6 -33.5 -6.9c0 -18.5 15 -33.6 33.5 -33.6c18.5 0 33.5 15 33.5 33.6z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m382.1 280c-15.1 0 -27.3 12.2 -27.3 27.3c0 15.1 12.2 27.3 27.3 27.3c15.1 0 27.3 -12.2 27.3 -27.3c0 -15.1 -12.2 -27.3 -27.3 -27.3zm0 67.1c-21.9 0 -39.8 -17.9 -39.8 -39.8c0 -21.9 17.9 -39.8 39.8 -39.8c21.9 0 39.8 17.9 39.8 39.8c0 21.9 -17.9 39.8 -39.8 39.8z"
+        />
+    <path
+        android:fillColor="#fff"
+        android:name="Compound Shape"
+        android:pathData="m379.1 296.4c0 7.5 -6.1 13.7 -13.7 13.7c-7.6 0 -13.7 -6.1 -13.7 -13.7c0 -7.6 6.1 -13.7 13.7 -13.7c7.5 0 13.7 6.1 13.7 13.7z"
+        />
+    <path
+        android:fillColor="#33363a"
+        android:name="Compound Shape"
+        android:pathData="m365.5 289c-4.1 0 -7.4 3.3 -7.4 7.4c0 4.1 3.3 7.4 7.4 7.4c4.1 0 7.4 -3.3 7.4 -7.4c0 -4.1 -3.3 -7.4 -7.4 -7.4zm0 27.3c-11 0 -19.9 -8.9 -19.9 -19.9c0 -11 8.9 -19.9 19.9 -19.9c11 0 19.9 8.9 19.9 19.9c0 11 -8.9 19.9 -19.9 19.9z"
+        />
 </vector>

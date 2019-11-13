@@ -23,11 +23,11 @@ class PokemonTest {
         sets.forEach { set ->
             println("Fetching cards for ${set.code}:${set.name}")
             pokemon.card()
-                    .where {
-                        setCode = set.code
-                        pageSize = 1000
-                    }
-                    .all()
+                .where {
+                    setCode = set.code
+                    pageSize = 1000
+                }
+                .all()
         }
     }
 }

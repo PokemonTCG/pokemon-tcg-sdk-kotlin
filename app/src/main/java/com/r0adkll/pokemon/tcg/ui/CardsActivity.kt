@@ -53,7 +53,7 @@ class CardsActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when (item.itemId) {
             android.R.id.home -> {
                 finish()
                 true
@@ -70,24 +70,24 @@ class CardsActivity : BaseActivity() {
         val pokemonName = if (superType == SuperType.POKEMON) "mew" else ""
 
         disposables += pokemon.card()
-                .where {
-                    name = pokemonName
-                    supertype = superType.displayName
-                }
-                .observeAll()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    adapter.submitList(it)
-                }, {
-                    Timber.e(it, "Error loading cards for $superType")
-                    snackbar(it.localizedMessage)
-                })
+            .where {
+                name = pokemonName
+                supertype = superType.displayName
+            }
+            .observeAll()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                adapter.submitList(it)
+            }, {
+                Timber.e(it, "Error loading cards for $superType")
+                snackbar(it.localizedMessage)
+            })
     }
 
     class CardAdapter(
-            val layoutInflater: LayoutInflater,
-            private val itemClickListener: (Card) -> Unit
+        val layoutInflater: LayoutInflater,
+        private val itemClickListener: (Card) -> Unit
     ) : ListAdapter<Card, CardViewHolder>(ITEM_CALLBACK) {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
@@ -124,10 +124,10 @@ class CardsActivity : BaseActivity() {
 
         fun bind(card: Card) {
             GlideApp.with(itemView)
-                    .load(card.imageUrlHiRes)
-                    .placeholder(R.drawable.pokemon_card_back)
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .into(image)
+                .load(card.imageUrlHiRes)
+                .placeholder(R.drawable.pokemon_card_back)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(image)
 
         }
     }

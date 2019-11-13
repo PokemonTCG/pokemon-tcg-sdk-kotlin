@@ -29,16 +29,16 @@ class Pokemon {
     constructor() : this(Config())
     constructor(config: Config) {
         okHttpClient = config.client
-                ?: OkHttpClient.Builder()
-                        .addInterceptor(HttpLoggingInterceptor().setLevel(config.logLevel))
-                        .build()
+            ?: OkHttpClient.Builder()
+                .addInterceptor(HttpLoggingInterceptor().setLevel(config.logLevel))
+                .build()
 
         val retroFit = Retrofit.Builder()
-                .baseUrl(config.apiUrl)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
+            .baseUrl(config.apiUrl)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
 
         syncService = retroFit.create(SyncApiService::class.java)
         rxService = retroFit.create(RxApiService::class.java)
@@ -69,29 +69,29 @@ class Pokemon {
 
             override fun all(): List<Card> {
                 return syncService.getCards(query)
-                        .result()
-                        .cards
-                        .map { ModelMapper.to(it) }
+                    .result()
+                    .cards
+                    .map { ModelMapper.to(it) }
             }
 
             override fun observeAll(): Observable<List<Card>> {
                 return rxService.getCards(query)
-                        .map { it.cards }
-                        .map { it.map { ModelMapper.to(it) } }
+                    .map { it.cards }
+                    .map { it.map { ModelMapper.to(it) } }
             }
         }
 
         override fun all(): List<Card> {
             return syncService.getCards()
-                    .result()
-                    .cards
-                    .map { ModelMapper.to(it) }
+                .result()
+                .cards
+                .map { ModelMapper.to(it) }
         }
 
         override fun observeAll(): Observable<List<Card>> {
             return rxService.getCards()
-                    .map { it.cards }
-                    .map { it.map { ModelMapper.to(it) } }
+                .map { it.cards }
+                .map { it.map { ModelMapper.to(it) } }
         }
 
         override fun find(id: String): Card {
@@ -100,7 +100,7 @@ class Pokemon {
 
         override fun observeFind(id: String): Observable<Card> {
             return rxService.getCard(id)
-                    .map { ModelMapper.to(it) }
+                .map { ModelMapper.to(it) }
         }
     }
 
@@ -119,33 +119,33 @@ class Pokemon {
             return Where(queryBuilder.toParams())
         }
 
-        inner class Where(params: Map<String, String?>): WhereRequest<CardSet>(params) {
+        inner class Where(params: Map<String, String?>) : WhereRequest<CardSet>(params) {
 
             override fun all(): List<CardSet> {
                 return syncService.getSets(query)
-                        .result()
-                        .sets
-                        .map { ModelMapper.to(it) }
+                    .result()
+                    .sets
+                    .map { ModelMapper.to(it) }
             }
 
             override fun observeAll(): Observable<List<CardSet>> {
                 return rxService.getSets(query)
-                        .map { it.sets }
-                        .map { it.map { ModelMapper.to(it) } }
+                    .map { it.sets }
+                    .map { it.map { ModelMapper.to(it) } }
             }
         }
 
         override fun all(): List<CardSet> {
             return syncService.getSets()
-                    .result()
-                    .sets
-                    .map { ModelMapper.to(it) }
+                .result()
+                .sets
+                .map { ModelMapper.to(it) }
         }
 
         override fun observeAll(): Observable<List<CardSet>> {
             return rxService.getSets()
-                    .map { it.sets }
-                    .map { it.map { ModelMapper.to(it) } }
+                .map { it.sets }
+                .map { it.map { ModelMapper.to(it) } }
         }
 
         override fun find(id: String): CardSet {
@@ -154,7 +154,7 @@ class Pokemon {
 
         override fun observeFind(id: String): Observable<CardSet> {
             return rxService.getSet(id)
-                    .map { ModelMapper.to(it) }
+                .map { ModelMapper.to(it) }
         }
     }
 
@@ -162,15 +162,15 @@ class Pokemon {
 
         override fun all(): List<Type> {
             return syncService.getTypes()
-                    .result()
-                    .types
-                    .map { Type.find(it) }
+                .result()
+                .types
+                .map { Type.find(it) }
         }
 
         override fun observeAll(): Observable<List<Type>> {
             return rxService.getTypes()
-                    .map { it.types }
-                    .map { it.map { Type.find(it) } }
+                .map { it.types }
+                .map { it.map { Type.find(it) } }
         }
     }
 
@@ -178,15 +178,15 @@ class Pokemon {
 
         override fun all(): List<SuperType> {
             return syncService.getSuperTypes()
-                    .result()
-                    .supertypes
-                    .map { SuperType.find(it) }
+                .result()
+                .supertypes
+                .map { SuperType.find(it) }
         }
 
         override fun observeAll(): Observable<List<SuperType>> {
             return rxService.getSuperTypes()
-                    .map { it.supertypes }
-                    .map { it.map { SuperType.find(it) } }
+                .map { it.supertypes }
+                .map { it.map { SuperType.find(it) } }
         }
     }
 
@@ -194,15 +194,15 @@ class Pokemon {
 
         override fun all(): List<SubType> {
             return syncService.getSubTypes()
-                    .result()
-                    .subtypes
-                    .map { SubType.find(it) }
+                .result()
+                .subtypes
+                .map { SubType.find(it) }
         }
 
         override fun observeAll(): Observable<List<SubType>> {
             return rxService.getSubTypes()
-                    .map { it.subtypes }
-                    .map { it.map { SubType.find(it) } }
+                .map { it.subtypes }
+                .map { it.map { SubType.find(it) } }
         }
     }
 }

@@ -22,9 +22,9 @@ class CardViewActivity : BaseActivity() {
 
         imageUrl = intent.getStringExtra(EXTRA_IMAGE)
         GlideApp.with(this)
-                .load(imageUrl)
-                .placeholder(R.drawable.pokemon_card_back)
-                .into(photoView)
+            .load(imageUrl)
+            .placeholder(R.drawable.pokemon_card_back)
+            .into(photoView)
     }
 
     companion object {
