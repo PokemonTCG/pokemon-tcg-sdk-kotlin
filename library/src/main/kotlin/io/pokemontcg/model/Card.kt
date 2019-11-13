@@ -12,6 +12,7 @@ data class Card(
     val evolvesFrom: String?,
     val hp: Int?,
     val retreatCost: List<Type>?,
+    val convertedRetreatCost: Int?,
     val number: String,
     val artist: String?,
     val rarity: String?,
@@ -22,5 +23,6 @@ data class Card(
     val attacks: List<Attack>?,
     val weaknesses: List<Effect>?,
     val resistances: List<Effect>?,
-    val ability: Ability?
+    val ability: Ability?,
+    val ancientTrait: Ability?
 )

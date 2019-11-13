@@ -17,6 +17,7 @@ internal object ModelMapper {
             model.evolvesFrom,
             model.hp?.toIntOrNull(),
             model.retreatCost?.map { Type.find(it) },
+            model.convertedRetreatCost,
             model.number,
             model.artist,
             model.rarity,
@@ -27,7 +28,8 @@ internal object ModelMapper {
             model.attacks?.map { to(it) },
             model.weaknesses?.map { to(it) },
             model.resistances?.map { to(it) },
-            model.ability?.let { to(it) }
+            model.ability?.let { to(it) },
+            model.ancientTrait?.let { to(it) }
         )
     }
 

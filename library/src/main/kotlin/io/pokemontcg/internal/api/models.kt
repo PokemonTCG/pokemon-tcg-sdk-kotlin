@@ -26,10 +26,11 @@ internal class CardModel(
     val imageUrlHiRes: String,
     val types: List<String>? = null,
     val supertype: String,
-    val subtype: String,
+    val subtype: String? = null,
     val evolvesFrom: String? = null,
     val hp: String? = null,
     val retreatCost: List<String>? = null,
+    val convertedRetreatCost: Int? = null,
     val number: String,
     val artist: String? = null,
     val rarity: String? = null,
@@ -40,13 +41,14 @@ internal class CardModel(
     val attacks: List<AttackModel>? = null,
     val weaknesses: List<EffectModel>? = null,
     val resistances: List<EffectModel>? = null,
-    val ability: AbilityModel? = null
+    val ability: AbilityModel? = null,
+    val ancientTrait: AbilityModel? = null
 )
 
 @Serializable
 internal class CardSetModel(
     val code: String,
-    val ptcgoCode: String,
+    val ptcgoCode: String? = null,
     val name: String,
     val series: String,
     val totalCards: Int,
