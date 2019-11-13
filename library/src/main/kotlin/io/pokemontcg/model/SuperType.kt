@@ -1,6 +1,5 @@
 package io.pokemontcg.model
 
-
 enum class SuperType(internal var text: String? = null) {
     ENERGY("Energy"),
     POKEMON("Pokémon"),
@@ -9,7 +8,6 @@ enum class SuperType(internal var text: String? = null) {
 
     val displayName: String
         get() = text ?: name.toLowerCase().capitalize()
-
 
     companion object {
         private val VALUES by lazy { values() }

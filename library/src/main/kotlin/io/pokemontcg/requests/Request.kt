@@ -1,8 +1,6 @@
 package io.pokemontcg.requests
 
-
 import io.reactivex.Observable
-
 
 interface Request<T> {
 

@@ -23,7 +23,6 @@ bintray {
     }
 }
 
-
 def pomConfig = {
     licenses {
         license {

@@ -1,6 +1,5 @@
 package io.pokemontcg.requests
 
-
 class CardSetQueryBuilder(
         var name: String? = null,
         var series: String? = null,

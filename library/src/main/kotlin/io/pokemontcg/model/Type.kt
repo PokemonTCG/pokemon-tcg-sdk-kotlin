@@ -1,6 +1,5 @@
 package io.pokemontcg.model
 
-
 enum class Type(internal var text: String? = null) {
     COLORLESS,
     DARKNESS,
@@ -17,7 +16,6 @@ enum class Type(internal var text: String? = null) {
 
     val displayName: String
         get() = text ?: name.capitalize()
-
 
     companion object {
         val VALUES by lazy { values() }

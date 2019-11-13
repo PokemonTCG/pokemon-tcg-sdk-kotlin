@@ -1,6 +1,5 @@
 package io.pokemontcg.model
 
-
 enum class SubType(internal var text: String? = null) {
     EX("EX"),
     SPECIAL("Special"),
@@ -24,7 +23,6 @@ enum class SubType(internal var text: String? = null) {
 
     val displayName: String
         get() = text ?: name.toLowerCase().capitalize()
-
 
     companion object {
         private val VALUES by lazy { values() }

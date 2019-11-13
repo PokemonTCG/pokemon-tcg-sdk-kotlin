@@ -1,9 +1,7 @@
 package io.pokemontcg.util
 
-
 import retrofit2.Call
 import java.io.IOException
-
 
 fun Int.gt(): String = "gt$this"
 fun Int.gte(): String = "gte$this"

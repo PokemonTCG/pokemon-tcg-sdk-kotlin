@@ -1,6 +1,5 @@
 package io.pokemontcg
 
-
 import io.pokemontcg.internal.api.ModelMapper
 import io.pokemontcg.internal.api.RxApiService
 import io.pokemontcg.internal.api.SyncApiService
@@ -14,7 +13,6 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-
 /**
  * Root API object for interfacing with the io.pokemontcg.com API
  */
@@ -24,11 +22,9 @@ class Pokemon {
         const val DEFAULT_API_URL = "https://api.pokemontcg.io/v1/"
     }
 
-
     private val okHttpClient: OkHttpClient
     private val syncService: SyncApiService
     private val rxService: RxApiService
-
 
     constructor() : this(Config())
     constructor(config: Config) {
@@ -48,13 +44,11 @@ class Pokemon {
         rxService = retroFit.create(RxApiService::class.java)
     }
 
-
     fun card(): QueryRequest<Card, CardQueryBuilder> = CardBuilder()
     fun set(): QueryRequest<CardSet, CardSetQueryBuilder> = SetBuilder()
     fun type(): Request<Type> = TypeBuilder()
     fun superType(): Request<SuperType> = SuperTypesBuilder()
     fun subType(): Request<SubType> = SubTypesBuilder()
-
 
     /**
      * Helper class to build a query
@@ -65,13 +59,11 @@ class Pokemon {
             return Where(query.toParams())
         }
 
-
         override fun where(query: CardQueryBuilder.() -> Unit): WhereRequest<Card> {
             val queryBuilder = CardQueryBuilder()
             queryBuilder.query()
             return Where(queryBuilder.toParams())
         }
-
 
         inner class Where(params: Map<String, String?>) : WhereRequest<Card>(params) {
 
@@ -82,14 +74,12 @@ class Pokemon {
                         .map { ModelMapper.to(it) }
             }
 
-
             override fun observeAll(): Observable<List<Card>> {
                 return rxService.getCards(query)
                         .map { it.cards }
                         .map { it.map { ModelMapper.to(it) } }
             }
         }
-
 
         override fun all(): List<Card> {
             return syncService.getCards()
@@ -98,25 +88,21 @@ class Pokemon {
                     .map { ModelMapper.to(it) }
         }
 
-
         override fun observeAll(): Observable<List<Card>> {
             return rxService.getCards()
                     .map { it.cards }
                     .map { it.map { ModelMapper.to(it) } }
         }
 
-
         override fun find(id: String): Card {
             return ModelMapper.to(syncService.getCard(id).result())
         }
-
 
         override fun observeFind(id: String): Observable<Card> {
             return rxService.getCard(id)
                     .map { ModelMapper.to(it) }
         }
     }
-
 
     /**
      * Helper class to assemble Set queries
@@ -127,13 +113,11 @@ class Pokemon {
             return Where(query.toParams())
         }
 
-
         override fun where(query: CardSetQueryBuilder.() -> Unit): WhereRequest<CardSet> {
             val queryBuilder = CardSetQueryBuilder()
             queryBuilder.query()
             return Where(queryBuilder.toParams())
         }
-
 
         inner class Where(params: Map<String, String?>): WhereRequest<CardSet>(params) {
 
@@ -144,14 +128,12 @@ class Pokemon {
                         .map { ModelMapper.to(it) }
             }
 
-
             override fun observeAll(): Observable<List<CardSet>> {
                 return rxService.getSets(query)
                         .map { it.sets }
                         .map { it.map { ModelMapper.to(it) } }
             }
         }
-
 
         override fun all(): List<CardSet> {
             return syncService.getSets()
@@ -160,25 +142,21 @@ class Pokemon {
                     .map { ModelMapper.to(it) }
         }
 
-
         override fun observeAll(): Observable<List<CardSet>> {
             return rxService.getSets()
                     .map { it.sets }
                     .map { it.map { ModelMapper.to(it) } }
         }
 
-
         override fun find(id: String): CardSet {
             return ModelMapper.to(syncService.getSet(id).result())
         }
-
 
         override fun observeFind(id: String): Observable<CardSet> {
             return rxService.getSet(id)
                     .map { ModelMapper.to(it) }
         }
     }
-
 
     private inner class TypeBuilder : Request<Type> {
 
@@ -189,14 +167,12 @@ class Pokemon {
                     .map { Type.find(it) }
         }
 
-
         override fun observeAll(): Observable<List<Type>> {
             return rxService.getTypes()
                     .map { it.types }
                     .map { it.map { Type.find(it) } }
         }
     }
-
 
     private inner class SuperTypesBuilder : Request<SuperType> {
 
@@ -207,14 +183,12 @@ class Pokemon {
                     .map { SuperType.find(it) }
         }
 
-
         override fun observeAll(): Observable<List<SuperType>> {
             return rxService.getSuperTypes()
                     .map { it.supertypes }
                     .map { it.map { SuperType.find(it) } }
         }
     }
-
 
     private inner class SubTypesBuilder : Request<SubType> {
 
@@ -224,7 +198,6 @@ class Pokemon {
                     .subtypes
                     .map { SubType.find(it) }
         }
-
 
         override fun observeAll(): Observable<List<SubType>> {
             return rxService.getSubTypes()

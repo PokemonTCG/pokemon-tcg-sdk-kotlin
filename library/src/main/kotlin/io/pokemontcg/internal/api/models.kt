@@ -1,6 +1,5 @@
 package io.pokemontcg.internal.api
 
-
 internal class CardResponse(val cards: List<CardModel>)
 
 internal class SetResponse(val sets: List<CardSetModel>)
@@ -10,7 +9,6 @@ internal class TypeResponse(val types: List<String>)
 internal class SuperTypeResponse(val supertypes: List<String>)
 
 internal class SubTypeResponse(val subtypes: List<String>)
-
 
 internal class CardModel(
         val id: String,
@@ -37,7 +35,6 @@ internal class CardModel(
         val ability: AbilityModel?
 )
 
-
 internal class CardSetModel(
         val code: String,
         val ptcgoCode: String,
@@ -48,16 +45,15 @@ internal class CardSetModel(
         val expandedLegal: Boolean,
         val releaseDate: String,
         val symbolUrl: String,
-        val logoUrl: String
+        val logoUrl: String,
+        val updatedAt: String
 )
-
 
 internal class AbilityModel(
         val name: String,
         val text: String,
         val type: String?
 )
-
 
 internal class AttackModel(
         val cost: List<String>?,
@@ -67,10 +63,8 @@ internal class AttackModel(
         val convertedEnergyCost: Int
 )
 
-
 internal class EffectModel(
         val type: String,
         val value: String
 )
-
 

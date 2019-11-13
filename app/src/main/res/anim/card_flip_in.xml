@@ -9,13 +9,11 @@
         android:duration="@android:integer/config_longAnimTime"
         />
 
-
     <scale
         android:fromXScale="0"
         android:toXScale="1"
         android:pivotX="50%"
         android:startDelay="@android:integer/config_longAnimTime"
         />
-
 
 </set>

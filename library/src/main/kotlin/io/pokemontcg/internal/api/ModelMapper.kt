@@ -1,8 +1,6 @@
 package io.pokemontcg.internal.api
 
-
 import io.pokemontcg.model.*
-
 
 internal object ModelMapper {
 
@@ -33,11 +31,9 @@ internal object ModelMapper {
         )
     }
 
-
     fun to(model: AbilityModel): Ability {
         return Ability(model.name, model.text, model.type)
     }
-
 
     fun to(model: AttackModel): Attack {
         return Attack(
@@ -49,11 +45,9 @@ internal object ModelMapper {
         )
     }
 
-
     fun to(model: EffectModel): Effect {
         return Effect(Type.find(model.type), model.value)
     }
-
 
     fun to(model: CardSetModel): CardSet {
         return CardSet(

@@ -1,6 +1,5 @@
 package io.pokemontcg.model
 
-
 data class Card(
         val id: String,
         val name: String,

@@ -8,7 +8,6 @@ import com.r0adkll.pokemon.tcg.R
 import com.r0adkll.pokemon.tcg.ui.component.BaseActivity
 import kotlinx.android.synthetic.main.activity_card_view.*
 
-
 class CardViewActivity : BaseActivity() {
 
     private lateinit var imageUrl: String
@@ -27,7 +26,6 @@ class CardViewActivity : BaseActivity() {
                 .placeholder(R.drawable.pokemon_card_back)
                 .into(photoView)
     }
-
 
     companion object {
         const val EXTRA_IMAGE = "com.r0adkll.pokemon.tcg.intent.EXTRA_IMAGE"

@@ -25,7 +25,6 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_cards.*
 import timber.log.Timber
 
-
 class CardsActivity : BaseActivity() {
 
     private lateinit var pokemon: Pokemon
@@ -52,7 +51,6 @@ class CardsActivity : BaseActivity() {
         pokemon = Pokemon()
         loadCards()
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
@@ -86,8 +84,6 @@ class CardsActivity : BaseActivity() {
                     snackbar(it.localizedMessage)
                 })
     }
-
-
 
     class CardAdapter(
             val layoutInflater: LayoutInflater,
@@ -126,7 +122,6 @@ class CardsActivity : BaseActivity() {
 
         val image: ImageView = itemView as ImageView
 
-
         fun bind(card: Card) {
             GlideApp.with(itemView)
                     .load(card.imageUrlHiRes)
@@ -136,7 +131,6 @@ class CardsActivity : BaseActivity() {
 
         }
     }
-
 
     companion object {
         const val EXTRA_SUPERTYPE = "com.r0adkll.pokemon.tcg.intent.EXTRA_SUPERTYPE"

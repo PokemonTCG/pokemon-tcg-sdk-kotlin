@@ -1,6 +1,5 @@
 package io.pokemontcg.model
 
-
 data class CardSet(
      val code: String,
      val ptcgoCode: String?,
@@ -11,5 +10,6 @@ data class CardSet(
      val expandedLegal: Boolean,
      val releaseDate: String,
      val symbolUrl: String,
-     val logoUrl: String
+     val logoUrl: String,
+     val updatedAt: String
 )

@@ -1,12 +1,10 @@
 package com.r0adkll.pokemon.tcg.util
 
-
 import android.app.Activity
 import android.support.annotation.IdRes
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.view.View
-
 
 fun Activity.find(@IdRes resId: Int) = this.findViewById<View>(resId)
 
