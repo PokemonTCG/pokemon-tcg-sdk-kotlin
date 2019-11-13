@@ -30,7 +30,9 @@ class Pokemon {
     constructor(config: Config) {
         okHttpClient = config.client
             ?: OkHttpClient.Builder()
-                .addInterceptor(HttpLoggingInterceptor().setLevel(config.logLevel))
+                .addInterceptor(HttpLoggingInterceptor().apply {
+                    level = config.logLevel
+                })
                 .build()
 
         val retroFit = Retrofit.Builder()
