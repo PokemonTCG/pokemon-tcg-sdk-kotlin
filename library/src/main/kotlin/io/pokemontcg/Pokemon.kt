@@ -1,17 +1,27 @@
 package io.pokemontcg
 
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import io.pokemontcg.internal.api.ModelMapper
 import io.pokemontcg.internal.api.RxApiService
 import io.pokemontcg.internal.api.SyncApiService
-import io.pokemontcg.model.*
-import io.pokemontcg.requests.*
+import io.pokemontcg.model.Card
+import io.pokemontcg.model.CardSet
+import io.pokemontcg.model.SubType
+import io.pokemontcg.model.SuperType
+import io.pokemontcg.model.Type
+import io.pokemontcg.requests.CardQueryBuilder
+import io.pokemontcg.requests.CardSetQueryBuilder
+import io.pokemontcg.requests.QueryRequest
+import io.pokemontcg.requests.Request
+import io.pokemontcg.requests.WhereRequest
 import io.pokemontcg.util.result
 import io.reactivex.Observable
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * Root API object for interfacing with the io.pokemontcg.com API
@@ -35,10 +45,11 @@ class Pokemon {
                 })
                 .build()
 
+        val contentType = "application/json".toMediaType()
         val retroFit = Retrofit.Builder()
             .baseUrl(config.apiUrl)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(Json.asConverterFactory(contentType))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
 
