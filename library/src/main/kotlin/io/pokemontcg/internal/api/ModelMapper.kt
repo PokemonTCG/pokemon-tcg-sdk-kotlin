@@ -22,7 +22,7 @@ internal object ModelMapper {
             model.artist,
             model.rarity,
             model.series,
-            model.set,
+            model.set ?: model.series,
             model.setCode,
             model.text,
             model.attacks?.map { to(it) },

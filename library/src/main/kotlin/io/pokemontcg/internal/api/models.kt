@@ -35,7 +35,7 @@ internal class CardModel(
     val artist: String? = null,
     val rarity: String? = null,
     val series: String,
-    val set: String,
+    val set: String? = null,
     val setCode: String,
     val text: List<String>? = null,
     val attacks: List<AttackModel>? = null,
