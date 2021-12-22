@@ -1,0 +1,43 @@
+[versions]
+minSdk = "21"
+targetSdk = "31"
+compileSdk = "31"
+buildTools = "28.0.3"
+
+kotlin = "1.6.10"
+androidBuildTools = "7.0.4"
+coroutines = "1.5.2"
+serialization = "1.2.2"
+rxjava = "2.2.21"
+
+retrofit = "2.9.0"
+okHttpLogging = "5.0.0-alpha.2"
+retrofitSerializationConverter = "0.8.0"
+
+junit = "4.12"
+kluent = "1.68"
+mockito = "3.12.4"
+runner = "1.0.1"
+
+[libraries]
+kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-serialization-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
+android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidBuildTools"}
+
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-rx2 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-rx2", version.ref = "coroutines" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+
+networking-retrofit-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+networking-retrofit-serialization = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofitSerializationConverter" }
+networking-okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okHttpLogging" }
+
+test-junit = { module = "junit:junit", version.ref = "junit" }
+test-mockito = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+test-kluent = { module = "org.amshove.kluent:kluent", version.ref = "kluent" }
+test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+
+[bundles]
+testing = [ "test-junit", "test-mockito", "test-kluent", "test-coroutines" ]

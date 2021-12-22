@@ -18,7 +18,7 @@ enum class Type(internal var text: String? = null) {
         get() = text ?: name.capitalize()
 
     companion object {
-        val VALUES by lazy { values() }
+        private val VALUES by lazy { values() }
 
         fun find(text: String): Type {
             val type = VALUES.find { it.name.equals(text, true) } ?: UNKNOWN

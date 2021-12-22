@@ -2,6 +2,7 @@ package io.pokemontcg.util
 
 import retrofit2.Call
 import retrofit2.HttpException
+import retrofit2.Response
 import java.io.IOException
 
 fun Int.gt(): String = "gt$this"
@@ -12,12 +13,11 @@ fun Int.lte(): String = "lte$this"
 infix fun String.and(value: String): String = "$this,$value"
 infix fun String.or(value: String): String = "$this|$value"
 
-fun <T> Call<T>.result(): T {
-    return execute().let {
-        if (it.isSuccessful) {
-            it.body()!!
-        } else {
-            throw HttpException(it)
-        }
+@Throws(HttpException::class)
+fun <T, R> Response<T>.resultAs(mapper: (T) -> R): R {
+    return if (isSuccessful) {
+        body()?.let(mapper) ?: throw HttpException(this)
+    } else {
+        throw HttpException(this)
     }
 }

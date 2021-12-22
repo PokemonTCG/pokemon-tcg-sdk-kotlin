@@ -2,11 +2,9 @@ package io.pokemontcg
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import io.pokemontcg.internal.api.ModelMapper
-import io.pokemontcg.internal.api.RxApiService
-import io.pokemontcg.internal.api.SyncApiService
+import io.pokemontcg.internal.api.ApiService
 import io.pokemontcg.model.Card
 import io.pokemontcg.model.CardSet
-import io.pokemontcg.model.SubType
 import io.pokemontcg.model.SuperType
 import io.pokemontcg.model.Type
 import io.pokemontcg.requests.CardQueryBuilder
@@ -14,54 +12,66 @@ import io.pokemontcg.requests.CardSetQueryBuilder
 import io.pokemontcg.requests.QueryRequest
 import io.pokemontcg.requests.Request
 import io.pokemontcg.requests.WhereRequest
-import io.pokemontcg.util.result
-import io.reactivex.Observable
+import io.pokemontcg.util.resultAs
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 /**
  * Root API object for interfacing with the io.pokemontcg.com API
  */
+@Suppress("JoinDeclarationAndAssignment")
 class Pokemon {
 
     companion object {
-        const val DEFAULT_API_URL = "https://api.pokemontcg.io/v1/"
+        const val DEFAULT_API_URL = "https://api.pokemontcg.io/v2/"
+        const val API_KEY_HEADER = "X-Api-Key"
     }
 
     private val okHttpClient: OkHttpClient
-    private val syncService: SyncApiService
-    private val rxService: RxApiService
+    private val service: ApiService
 
-    constructor() : this(Config())
+    constructor(apiKey: String) : this(Config(apiKey))
+
+    @OptIn(ExperimentalSerializationApi::class)
     constructor(config: Config) {
-        okHttpClient = config.client
+        val client = config.client
             ?: OkHttpClient.Builder()
                 .addInterceptor(HttpLoggingInterceptor().apply {
                     level = config.logLevel
                 })
                 .build()
 
+        okHttpClient = client.newBuilder()
+            .addInterceptor {
+                val request = it.request().newBuilder()
+                    .addHeader(API_KEY_HEADER, config.apiKey)
+                    .build()
+                it.proceed(request)
+            }
+            .build()
+
         val contentType = "application/json".toMediaType()
+        val json = Json {
+            ignoreUnknownKeys = true
+        }
         val retroFit = Retrofit.Builder()
             .baseUrl(config.apiUrl)
             .client(okHttpClient)
-            .addConverterFactory(Json.asConverterFactory(contentType))
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(json.asConverterFactory(contentType))
             .build()
 
-        syncService = retroFit.create(SyncApiService::class.java)
-        rxService = retroFit.create(RxApiService::class.java)
+        service = retroFit.create(ApiService::class.java)
     }
 
     fun card(): QueryRequest<Card, CardQueryBuilder> = CardBuilder()
     fun set(): QueryRequest<CardSet, CardSetQueryBuilder> = SetBuilder()
     fun type(): Request<Type> = TypeBuilder()
     fun superType(): Request<SuperType> = SuperTypesBuilder()
-    fun subType(): Request<SubType> = SubTypesBuilder()
+    fun subType(): Request<String> = SubTypesBuilder()
 
     /**
      * Helper class to build a query
@@ -80,40 +90,20 @@ class Pokemon {
 
         inner class Where(params: Map<String, String?>) : WhereRequest<Card>(params) {
 
-            override fun all(): List<Card> {
-                return syncService.getCards(query)
-                    .result()
-                    .cards
-                    .map { ModelMapper.to(it) }
-            }
-
-            override fun observeAll(): Observable<List<Card>> {
-                return rxService.getCards(query)
-                    .map { it.cards }
-                    .map { it.map { ModelMapper.to(it) } }
+            override suspend fun all(): List<Card> {
+                return service.getCards(query)
+                    .resultAs { ModelMapper.toCards(it.cards) }
             }
         }
 
-        override fun all(): List<Card> {
-            return syncService.getCards()
-                .result()
-                .cards
-                .map { ModelMapper.to(it) }
+        override suspend fun all(): List<Card> {
+            return service.getCards()
+                .resultAs { ModelMapper.toCards(it.cards) }
         }
 
-        override fun observeAll(): Observable<List<Card>> {
-            return rxService.getCards()
-                .map { it.cards }
-                .map { it.map { ModelMapper.to(it) } }
-        }
-
-        override fun find(id: String): Card {
-            return ModelMapper.to(syncService.getCard(id).result())
-        }
-
-        override fun observeFind(id: String): Observable<Card> {
-            return rxService.getCard(id)
-                .map { ModelMapper.to(it) }
+        override suspend fun find(id: String): Card {
+            return service.getCard(id)
+                .resultAs { ModelMapper.to(it) }
         }
     }
 
@@ -134,88 +124,48 @@ class Pokemon {
 
         inner class Where(params: Map<String, String?>) : WhereRequest<CardSet>(params) {
 
-            override fun all(): List<CardSet> {
-                return syncService.getSets(query)
-                    .result()
-                    .sets
-                    .map { ModelMapper.to(it) }
-            }
-
-            override fun observeAll(): Observable<List<CardSet>> {
-                return rxService.getSets(query)
-                    .map { it.sets }
-                    .map { it.map { ModelMapper.to(it) } }
+            override suspend fun all(): List<CardSet> {
+                return service.getSets(query)
+                    .resultAs { ModelMapper.toSets(it.sets) }
             }
         }
 
-        override fun all(): List<CardSet> {
-            return syncService.getSets()
-                .result()
-                .sets
-                .map { ModelMapper.to(it) }
+        override suspend fun all(): List<CardSet> {
+            return service.getSets()
+                .resultAs { ModelMapper.toSets(it.sets) }
         }
 
-        override fun observeAll(): Observable<List<CardSet>> {
-            return rxService.getSets()
-                .map { it.sets }
-                .map { it.map { ModelMapper.to(it) } }
-        }
-
-        override fun find(id: String): CardSet {
-            return ModelMapper.to(syncService.getSet(id).result())
-        }
-
-        override fun observeFind(id: String): Observable<CardSet> {
-            return rxService.getSet(id)
-                .map { ModelMapper.to(it) }
+        override suspend fun find(id: String): CardSet {
+            return service.getSet(id)
+                .resultAs { ModelMapper.to(it) }
         }
     }
 
     private inner class TypeBuilder : Request<Type> {
 
-        override fun all(): List<Type> {
-            return syncService.getTypes()
-                .result()
-                .types
-                .map { Type.find(it) }
-        }
-
-        override fun observeAll(): Observable<List<Type>> {
-            return rxService.getTypes()
-                .map { it.types }
-                .map { it.map { Type.find(it) } }
+        override suspend fun all(): List<Type> {
+            return service.getTypes()
+                .resultAs { response ->
+                    response.data.map { Type.find(it) }
+                }
         }
     }
 
     private inner class SuperTypesBuilder : Request<SuperType> {
 
-        override fun all(): List<SuperType> {
-            return syncService.getSuperTypes()
-                .result()
-                .supertypes
-                .map { SuperType.find(it) }
-        }
-
-        override fun observeAll(): Observable<List<SuperType>> {
-            return rxService.getSuperTypes()
-                .map { it.supertypes }
-                .map { it.map { SuperType.find(it) } }
+        override suspend fun all(): List<SuperType> {
+            return service.getSuperTypes()
+                .resultAs { response ->
+                    response.data.map { SuperType.find(it) }
+                }
         }
     }
 
-    private inner class SubTypesBuilder : Request<SubType> {
+    private inner class SubTypesBuilder : Request<String> {
 
-        override fun all(): List<SubType> {
-            return syncService.getSubTypes()
-                .result()
-                .subtypes
-                .map { SubType.find(it) }
-        }
-
-        override fun observeAll(): Observable<List<SubType>> {
-            return rxService.getSubTypes()
-                .map { it.subtypes }
-                .map { it.map { SubType.find(it) } }
+        override suspend fun all(): List<String> {
+            return service.getSubTypes()
+                .resultAs { it.data }
         }
     }
 }

@@ -1,1 +1,12 @@
-include ':app', ':library'
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://jitpack.io" }
+    }
+}
+
+include ':library', ':rx2'
+enableFeaturePreview("VERSION_CATALOGS")
