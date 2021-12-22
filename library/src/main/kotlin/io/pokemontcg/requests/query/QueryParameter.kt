@@ -34,7 +34,7 @@ data class LogicalParameter(
 
   override fun build(): String {
     return if (clauses.size > 1) {
-      "(${clauses.joinToString(" OR ") { build() }})"
+      "(${clauses.joinToString(" OR ") { it.build() }})"
     } else {
       clauses.firstOrNull()?.build() ?: ""
     }

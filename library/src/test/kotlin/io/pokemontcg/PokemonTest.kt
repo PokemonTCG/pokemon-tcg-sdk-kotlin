@@ -17,6 +17,8 @@ import org.junit.Test
 @ExperimentalPokemonApi
 class PokemonTest {
 
+  var apiKey: String? = null // TODO: update with actual api key
+
   private val mainThreadSurrogate = newSingleThreadContext("UI thread")
   lateinit var pokemon: Pokemon
 
@@ -25,7 +27,7 @@ class PokemonTest {
     Dispatchers.setMain(mainThreadSurrogate)
     pokemon = Pokemon(Config(
       logLevel = HttpLoggingInterceptor.Level.NONE,
-      apiKey = "add-api-key-here",
+      apiKey = apiKey ?: "add-api-key-here",
     ))
   }
 
@@ -38,6 +40,8 @@ class PokemonTest {
   @ExperimentalCoroutinesApi
   @Test
   fun `test all models parse correctly`() {
+    if (apiKey == null) return
+
     runBlocking {
       val sets = pokemon.set().all()
       sets.forEach { set ->

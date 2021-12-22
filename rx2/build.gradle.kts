@@ -17,3 +17,6 @@ dependencies {
     implementation(libs.kotlinx.coroutines.rx2)
 }
 
+apply {
+    from("../tools/publish.gradle")
+}

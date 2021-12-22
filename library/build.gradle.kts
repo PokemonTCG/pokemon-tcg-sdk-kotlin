@@ -25,3 +25,7 @@ dependencies {
     api(libs.networking.retrofit.serialization)
     api(libs.networking.okhttp.logging)
 }
+
+apply {
+    from("../tools/publish.gradle")
+}
