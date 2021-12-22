@@ -2,6 +2,7 @@ plugins {
     id("java-library")
     id("kotlin")
     id("kotlinx-serialization")
+    id("maven-publish")
 }
 
 group = project.properties["GROUP"]!!
