@@ -1,7 +1,9 @@
 package io.pokemontcg.requests.query
 
 import io.pokemontcg.ExperimentalPokemonApi
+import io.pokemontcg.model.SuperType
 import io.pokemontcg.model.Type
+import java.lang.StringBuilder
 
 abstract class Builder : QueryComponent {
 
@@ -58,6 +60,10 @@ class CardBuilder : Builder() {
     components += StringKeyScope("name").apply(block)
   }
 
+  fun flavorText(value: String) {
+    components += StringValue("flavorText:$value")
+  }
+
   fun hp(value: String) {
     components += StringValue("hp:$value")
   }
@@ -95,11 +101,71 @@ class CardBuilder : Builder() {
   }
 
   fun artist(value: String) {
-
+    components += StringValue("artist:$value")
   }
 
   fun rarity(value: String) {
+    components += StringValue("rarity:$value")
+  }
 
+  fun rarity(block: StringKeyScope.() -> Unit) {
+    components += StringKeyScope("rarity").apply(block)
+  }
+
+  fun supertype(superType: SuperType) {
+    components += StringValue("supertype:${superType.text}")
+  }
+
+  fun type(value: String) {
+    components += StringValue("types:$value")
+  }
+
+  fun type(block: StringKeyScope.() -> Unit) {
+    components += StringKeyScope("types").apply(block)
+  }
+
+  fun subtypes(value: String) {
+    components += StringValue("subtypes:$value")
+  }
+
+  fun subtypes(block: StringKeyScope.() -> Unit) {
+    components += StringKeyScope("subtypes").apply(block)
+  }
+
+  fun retreatCost(value: String) {
+    components += StringValue("retreatCost:$value")
+  }
+
+  fun retreatCost(block: StringKeyScope.() -> Unit) {
+    components += StringKeyScope("retreatCost").apply(block)
+  }
+
+  fun convertedRetreatCost(value: String) {
+    components += StringValue("convertedRetreatCost:$value")
+  }
+
+  fun convertedRetreatCost(value: Int) {
+    components += StringValue("convertedRetreatCost:$value")
+  }
+
+  fun convertedRetreatCost(block: IntRangeKeyScope.() -> Unit) {
+    components += IntRangeKeyScope("convertedRetreatCost").apply(block)
+  }
+
+  fun evolvesFrom(value: String) {
+    components += StringValue("evolvesFrom:$value")
+  }
+
+  fun evolvesFrom(block: StringKeyScope.() -> Unit) {
+    components += StringKeyScope("evolvesFrom").apply(block)
+  }
+
+  fun evolvesTo(value: String) {
+    components += StringValue("evolvesTo:$value")
+  }
+
+  fun evolvesTo(block: StringKeyScope.() -> Unit) {
+    components += StringKeyScope("evolvesTo").apply(block)
   }
 }
 
@@ -210,6 +276,10 @@ class EffectBuilder(private val key: String) : Builder() {
   }
 
   fun type(vararg values: Type) {
+    type(values.toList())
+  }
+
+  fun type(values: Iterable<Type>) {
     components += StringKeyScope("$key.type").apply {
       isIn(values.map { it.displayName })
     }
