@@ -124,6 +124,26 @@ class CardBuilder : Builder() {
     components += StringKeyScope("types").apply(block)
   }
 
+  fun type(vararg values: String) {
+    components += StringKeyScope("types").apply {
+      isIn(values.toList())
+    }
+  }
+
+  fun type(value: Type) {
+    type(value.displayName)
+  }
+
+  fun type(vararg values: Type) {
+    type(values.toList())
+  }
+
+  fun type(values: Iterable<Type>) {
+    components += StringKeyScope("types").apply {
+      isIn(values.map { it.displayName })
+    }
+  }
+
   fun subtypes(value: String) {
     components += StringValue("subtypes:$value")
   }
