@@ -148,6 +148,12 @@ class CardBuilder : Builder() {
     components += StringValue("subtypes:$value")
   }
 
+  fun subtypes(vararg values: String) {
+    subtypes {
+      isIn(values.toList())
+    }
+  }
+
   fun subtypes(block: StringKeyScope.() -> Unit) {
     components += StringKeyScope("subtypes").apply(block)
   }
