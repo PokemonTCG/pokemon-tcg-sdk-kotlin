@@ -149,6 +149,10 @@ class CardBuilder : Builder() {
   }
 
   fun subtypes(vararg values: String) {
+    subtypes(values.toList())
+  }
+
+  fun subtypes(values: Iterable<String>) {
     subtypes {
       isIn(values.toList())
     }
