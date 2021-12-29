@@ -3,6 +3,13 @@ package io.pokemontcg.requests.query
 import io.pokemontcg.ExperimentalPokemonApi
 
 @ExperimentalPokemonApi
+fun setBuilder(block: SetBuilder.() -> Unit): String {
+  val builder = SetBuilder()
+  builder.block()
+  return builder.build()
+}
+
+@ExperimentalPokemonApi
 class SetBuilder(
   key: String = ""
 ) : KeyScope(key) {

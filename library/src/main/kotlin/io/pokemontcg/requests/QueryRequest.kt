@@ -1,8 +1,8 @@
 package io.pokemontcg.requests
 
-interface QueryRequest<T, Q : QueryBuilder> : Request<T> {
+interface QueryRequest<T> : Request<T> {
 
-    fun where(query: Q.() -> Unit): WhereRequest<T>
-    fun where(query: Q): WhereRequest<T>
+    fun where(query: QueryBuilder.() -> Unit): WhereRequest<T>
+    fun where(query: QueryBuilder): WhereRequest<T>
     suspend fun find(id: String): T
 }

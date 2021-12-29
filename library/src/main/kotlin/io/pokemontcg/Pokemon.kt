@@ -7,11 +7,7 @@ import io.pokemontcg.model.Card
 import io.pokemontcg.model.CardSet
 import io.pokemontcg.model.SuperType
 import io.pokemontcg.model.Type
-import io.pokemontcg.requests.CardQueryBuilder
-import io.pokemontcg.requests.CardSetQueryBuilder
-import io.pokemontcg.requests.QueryRequest
-import io.pokemontcg.requests.Request
-import io.pokemontcg.requests.WhereRequest
+import io.pokemontcg.requests.*
 import io.pokemontcg.util.resultAs
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
@@ -67,8 +63,8 @@ class Pokemon {
         service = retroFit.create(ApiService::class.java)
     }
 
-    fun card(): QueryRequest<Card, CardQueryBuilder> = CardBuilder()
-    fun set(): QueryRequest<CardSet, CardSetQueryBuilder> = SetBuilder()
+    fun card(): QueryRequest<Card> = CardBuilder()
+    fun set(): QueryRequest<CardSet> = SetBuilder()
     fun type(): Request<Type> = TypeBuilder()
     fun superType(): Request<SuperType> = SuperTypesBuilder()
     fun subType(): Request<String> = SubTypesBuilder()
@@ -76,14 +72,14 @@ class Pokemon {
     /**
      * Helper class to build a query
      */
-    private inner class CardBuilder : QueryRequest<Card, CardQueryBuilder> {
+    private inner class CardBuilder : QueryRequest<Card> {
 
-        override fun where(query: CardQueryBuilder): WhereRequest<Card> {
+        override fun where(query: QueryBuilder): WhereRequest<Card> {
             return Where(query.toParams())
         }
 
-        override fun where(query: CardQueryBuilder.() -> Unit): WhereRequest<Card> {
-            val queryBuilder = CardQueryBuilder()
+        override fun where(query: QueryBuilder.() -> Unit): WhereRequest<Card> {
+            val queryBuilder = QueryBuilder()
             queryBuilder.query()
             return Where(queryBuilder.toParams())
         }
@@ -110,14 +106,14 @@ class Pokemon {
     /**
      * Helper class to assemble Set queries
      */
-    private inner class SetBuilder : QueryRequest<CardSet, CardSetQueryBuilder> {
+    private inner class SetBuilder : QueryRequest<CardSet> {
 
-        override fun where(query: CardSetQueryBuilder): WhereRequest<CardSet> {
+        override fun where(query: QueryBuilder): WhereRequest<CardSet> {
             return Where(query.toParams())
         }
 
-        override fun where(query: CardSetQueryBuilder.() -> Unit): WhereRequest<CardSet> {
-            val queryBuilder = CardSetQueryBuilder()
+        override fun where(query: QueryBuilder.() -> Unit): WhereRequest<CardSet> {
+            val queryBuilder = QueryBuilder()
             queryBuilder.query()
             return Where(queryBuilder.toParams())
         }
