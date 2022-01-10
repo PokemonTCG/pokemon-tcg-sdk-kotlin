@@ -68,6 +68,7 @@ class Pokemon {
     fun type(): Request<Type> = TypeBuilder()
     fun superType(): Request<SuperType> = SuperTypesBuilder()
     fun subType(): Request<String> = SubTypesBuilder()
+    fun rarities(): Request<String> = RaritiesBuilder()
 
     /**
      * Helper class to build a query
@@ -161,6 +162,14 @@ class Pokemon {
 
         override suspend fun all(): List<String> {
             return service.getSubTypes()
+                .resultAs { it.data }
+        }
+    }
+
+    private inner class RaritiesBuilder : Request<String> {
+
+        override suspend fun all(): List<String> {
+            return service.getRarities()
                 .resultAs { it.data }
         }
     }

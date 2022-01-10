@@ -10,6 +10,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import okhttp3.logging.HttpLoggingInterceptor
+import org.amshove.kluent.internal.assertEquals
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -17,7 +18,7 @@ import org.junit.Test
 @ExperimentalPokemonApi
 class PokemonTest {
 
-  var apiKey: String? = null // TODO: update with actual api key
+  var apiKey: String? = "68e47d6b-062f-46a4-bc63-633ddce937a7" // TODO: update with actual api key
 
   private val mainThreadSurrogate = newSingleThreadContext("UI thread")
   lateinit var pokemon: Pokemon
@@ -60,6 +61,25 @@ class PokemonTest {
         // This is needed to avoid rate-limits in the api
         delay(2000L)
       }
+    }
+  }
+
+  @ExperimentalCoroutinesApi
+  @Test
+  fun `test search parse correctly`() {
+    if (apiKey == null) return
+
+    runBlocking {
+      val results = pokemon.card()
+        .where {
+          query = cardBuilder {
+            set {
+              name("charizard")
+            }
+          }
+          pageSize = 1000
+        }
+        .all()
     }
   }
 }

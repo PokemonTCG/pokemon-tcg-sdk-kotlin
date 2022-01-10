@@ -25,6 +25,9 @@ internal interface ApiService {
     @GET("subtypes")
     suspend fun getSubTypes(): Response<SimpleResponse>
 
+    @GET("rarities")
+    suspend fun getRarities(): Response<SimpleResponse>
+
     @GET("sets")
     suspend fun getSets(): Response<SetResponse>
 
